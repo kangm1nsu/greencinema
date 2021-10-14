@@ -8,6 +8,5 @@
 </head>
 <body>
 	민환
-	안녕하세요?
 </body>
 </html>

@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	민환
-	안녕하세요?
+	민홍
 </body>
 </html>
