@@ -28,7 +28,7 @@ public class PageControllerTest {
 	public String userjoinForm() {
 		return "user/joinForm";
 	}
-	@GetMapping("test/user/loinForm")
+	@GetMapping("test/user/loginForm")
 	public String userloinForm() {
 		return "user/loinForm";
 	}
