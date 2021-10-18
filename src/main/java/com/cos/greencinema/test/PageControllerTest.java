@@ -30,7 +30,7 @@ public class PageControllerTest {
 	}
 	@GetMapping("test/user/loginForm")
 	public String userloinForm() {
-		return "user/loinForm";
+		return "user/loginForm";
 	}
 	@GetMapping("test/user/updateForm")
 	public String userUpdateForm() {
@@ -39,7 +39,8 @@ public class PageControllerTest {
 
 	@GetMapping("test/layout/main")
 	public String main() {
-		return "user/main";
+	//	return "user/main";
+	return "layout/main";
 	}
 	
 	

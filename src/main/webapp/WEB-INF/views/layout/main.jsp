@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp" %>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 img {
   display: block;
@@ -11,24 +12,26 @@ img {
   width: auto;
   
 }
-iframe {
-display: block;
-  height: 100vh;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  
+	<!-- iframe 비율 조정 -->
+.video {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	
 }
+
 body {
  
-
+	background-image: url("https://t1.daumcdn.net/cfile/blog/160336384EADE80D2E");
   background-repeat: no-repeat;
-  background-position: right top;
+  background-size: cover;
   
-  background-attachment: scroll;
+  
+  
 }
 </style>
-
+<button type="button" class="btn btn-outline-info" onclick="location.href = '/test/user/joinForm' ">회원가입</button>
+<button type="button" class="btn btn-outline-info" onclick="location.href = '/test/user/updateForm' ">내 정보</button>
 <!-- Carousel -->
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
@@ -72,7 +75,15 @@ body {
 </div>
 <div>
 </div>
-<iframe src="https://www.youtube.com/embed/kCzbDJ2G_B8" ></iframe>
+
+
+
+<!-- <div class="video">
+<p align="middle">
+<iframe width="600"  height="400"  src="https://www.youtube.com/embed/kCzbDJ2G_B8" ></iframe>
+</p>
+</div> -->
+
 
 <%@ include file="../layout/footer.jsp" %>
 
