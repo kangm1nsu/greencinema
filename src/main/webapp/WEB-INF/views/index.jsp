@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	response.sendRedirect("/layout/main");
+	//response.sendRedirect("/layout/main");
+	response.sendRedirect("test/layout/main");
 	//request.getRequestDispatcher("/board?page=0").foward(request.response);
 %>
