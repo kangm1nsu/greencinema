@@ -93,3 +93,5 @@
 		<!-- 영화 카드 끝 -->
 	</div>
 </div>
+
+<%@ include file="../layout/footer.jsp"%>
