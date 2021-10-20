@@ -32,6 +32,7 @@
 <title>영화등록</title>
 </head>
 <body>
+
 	<div class="wrap">
 		<div class = "wrap-title"></div>
 			<h2>영화 등록</h2>
@@ -42,5 +43,6 @@
 			background: transparent;">
 			<button type ="button">추가</button>
 		</div>
+
 </body>
 </html>
