@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageControllerTest {
 
 	//민수 영역-------------
+	@GetMapping("test/layout/header")
+	public String header() {
+		return "layout/header";
+	}
+	
+	
 	@GetMapping("test/movie/detail")
 	public String movieDetail() {
 		return "movie/detail";
@@ -17,7 +23,7 @@ public class PageControllerTest {
 	public String movielist() {
 		return "movie/list";
 	}
-	@GetMapping("test/user/myRes")
+	@GetMapping("test/user/myres")
 	public String userMyRes() {
 		return "user/myRes";
 	}
