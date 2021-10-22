@@ -34,9 +34,9 @@ public class PageControllerTest {
 	public String userjoinForm() {
 		return "user/joinForm";
 	}
-	@GetMapping("test/user/loinForm")
+	@GetMapping("test/user/loginForm")
 	public String userloinForm() {
-		return "user/loinForm";
+		return "user/loginForm";
 	}
 	@GetMapping("test/user/updateForm")
 	public String userUpdateForm() {
@@ -45,14 +45,15 @@ public class PageControllerTest {
 
 	@GetMapping("test/layout/main")
 	public String main() {
-		return "user/main";
+	//	return "user/main";
+	return "layout/main";
 	}
 	
 	
 	//민홍 영역 --------------
-	@GetMapping("test/res/Reserve")
+	@GetMapping("test/res/reserve")
 	public String resReserve() {
-		return "res/Reserve";
+		return "res/reserve";
 	}
 	
 	@GetMapping("test/pay/pay")
@@ -73,6 +74,10 @@ public class PageControllerTest {
 	@GetMapping("test/admin/resManage")
 	public String adminresManage() {
 		return "admin/resManage";
+	}
+	@GetMapping("test/store/list")
+	public String storeList() {
+		return "store/list";
 	}
 
 	

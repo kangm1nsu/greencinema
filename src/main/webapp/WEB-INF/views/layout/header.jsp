@@ -37,6 +37,8 @@ a {
 	height: 114px;
 	background-color: #fff;
 	overflow: hidden;
+	margin-bottom: 15px;
+	font-weight: bolder;
 }
 
 .gnb {
@@ -77,7 +79,7 @@ a {
 	margin: 0 auto;
 }
 
-.logo img{
+.logo a img{
 	width: 50px;
 	height: 50px;
 	margin-right: 10px;
@@ -90,21 +92,21 @@ a {
 			<div><a href="#">Facebook</a></div>
 			
 			<h1 class="logo">
-				<img alt="" src="/img/logo_black.png"> <a href="#">GREEN
+				<a href="/test/layout/main"> <img alt="logo" src="/img/logo_black.png"> GREEN
 					CINEMA</a>
 			</h1>
 			<div class="sign">
-					<a href="#">로그인</a>
-					<a href="#">회원가입</a>
+					<a href="/test/user/loginForm">로그인</a>
+					<a href="/test/user/joinForm">회원가입</a>
 			</div>
 		</div>
 		<div id="nav" class="nav_bar">
 			
 				<div><a
-					href="#">예매</a></div>
+					href="/test/res/reserve">예매</a></div>
 					<div>ㅣ</div>
 				<div><a
-					href="#">영화</a></div>
+					href="/test/movie/list">영화</a></div>
 					<div>ㅣ</div>
 				<div><a href="#">스토어</a></div>
 		</div>
