@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+
+.wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+.item_box{
+	width: 320px;
+	height: 320px;
+
+}
+.item_desc{
+	text-align: center;
+}

@@ -1,59 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<link rel="stylesheet" href="/css/user/myRes.css" />
 
-<style>
-.top_side {
-	background-color: #333333;
-	color: white;
-	text-align: center;
-}
-
-.wrap {
-	margin-top: 10px;
-	border: 3px solid #dddddd;
-}
-
-.cards {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.card {
-	border: 3px solid #dddddd;
-	border-radius: 10px;
-	height: 350px;
-	width: 200px;
-	margin: 15px;
-	text-align: center;
-}
-
-.cards_list {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-.card_hr {
-	margin: 4px 2px;
-	border: 1px solid #333333;
-}
-
-.movie_name {
-	text-align: center;
-}
-
-p {
-	font-size: 12px;
-	margin: 0px;
-}
-
-.grade {
-	text-align: right;
-	padding-right: 10px;
-	padding-top: 5px;
-}
-</style>
 
 <div class="wrap">
 	<div class="top_side">예약한 영화 목록</div>

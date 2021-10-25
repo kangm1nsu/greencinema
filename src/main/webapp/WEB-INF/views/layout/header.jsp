@@ -15,77 +15,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="/css/layout/header.css" />
 
-<style>
-a {
-	text-decoration: none;
-	color: black;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-.header {
-	margin: 0 auto;
-	width: 960px;
-	height: 114px;
-	background-color: #fff;
-	overflow: hidden;
-	margin-bottom: 15px;
-	font-weight: bolder;
-}
-
-.gnb {
-	width: 100%;
-	hegith: 71px;
-	font-size: 12px;
-	border-bottom: 1px solid #EEE;
-	display: flex;
-	justify-content: space-between;
-	margin: 15px auto;
-	margin-top : 15px;
-}
-
-.gnb > div> a{
-	color : #656565;
-}
-
-.sign {
-	width: 100px;
-	display: flex;
-	justify-content: space-between;
-}
-
-.logo{
-	display: flex;
-	justify-content: center;
-}
-
-.nav_bar{
-	margin: 0 auto;
-	margin-top : 10px;
-	width:300px;
-	display: flex;
-	justify-content: space-between;
-}
-.wrap{
-	width:960px;
-	margin: 0 auto;
-}
-
-.logo a img{
-	width: 50px;
-	height: 50px;
-	margin-right: 10px;
-}
-
-</style>
 <body>
 	<div id="header_section" class="header">
 		<div class="gnb">
