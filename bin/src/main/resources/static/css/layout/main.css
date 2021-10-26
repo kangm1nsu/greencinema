@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.main {
+	margin: 0 auto;
+	width: 960px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+.card {
+	border-radius: 20px;
+	border-style: none;
+	width: 500px;
+	height: 500px;
+	justify-content: center;
+	align-items: center;
+	margin: 100px auto;
+}
+
+.video {
+	margin: 0 auto;
+	width: 960px;
+	height: 388px;
+}
+
+.wrap2 {
+	background-color: black;
+}

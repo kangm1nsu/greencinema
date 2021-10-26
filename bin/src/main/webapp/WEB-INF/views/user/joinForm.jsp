@@ -1,83 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ include file="../layout/header.jsp" %>
-	<!-- 상진 -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-<style>
+	pageEncoding="UTF-8"%>
 
-.rap{
-   margin: 0 auto;
-   width:960px;
-}
+<%@ include file="../layout/header.jsp"%>
+<link rel="stylesheet" href="/css/user/joinForm.css" />
+<div class="resi_form">
+	<div class="registration-form">
+		<form>
+			<b>GreenCinema 회원가입</b>
+			<div class="form-group">
+				<input type="text" class="form-control item" id="username"
+					placeholder="아이디">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control item" id="password"
+					placeholder="비밀번호">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control item" id="email"
+					placeholder="이메일">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control item" id="phone-number"
+					placeholder="연락처">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control item" id="birth-date"
+					placeholder="생년월일">
+			</div>
+			<div class="form-group">
+				<button type="button" class="btn btn-block create-account">가입하기</button>
+			</div>
+		</form>
 
-div.container_SJ {
-<!-- 회원정보 입력 중앙 위치 -->
-	margin-top: auto ;
-	align-items: center;
-	justify-content:center;
-	display:flex;
-	min-height: 100vh;
-	
-
-	 }
-
-	 
-	 
-	 body {
- 	
-	background-image: url("https://t1.daumcdn.net/cfile/blog/160336384EADE80D2E");
-  background-repeat: no-repeat;
-  background-size: cover;
-  
-  
-  
-}
-.card{
-   
-   border-radius: 20px;
-   border-style:none;'
-}
-
-</style>
-  <div class="rap">
-		<div class="container_SJ">
-	     	<div class="card">
-		     	<div class="card">
-					<form action="/join"  method="post">
-	   <div class="card-body">
-	     	<input type="text" name="username" class="form-control" placeholder="아이디"  maxlength="20">
-	   </div>
-	  
-	   <div class="card-body">
-	    	<input type="password" name="password" class="form-control" placeholder="비밀번호"  maxlength="20">
-	   </div>
-	   
-	   <div class="card-body">
-	    	<input type="email" name="email" class="form-control" placeholder="이메일"  >
-	   </div>
-	   
-	  <div class="card-body">
-	    <input type="text" name="tel" class="form-control" placeholder="전화번호"  maxlength="13">
-	  </div>
-	  
-	  	 <div class="card-body">
-	    	<input type="date" name="date" class="form-control"  >
-	  	</div>
-  		<button type="submit" class="btn btn-outline-secondary" style="margin-left: 10px">회원가입</button>
-  
-
-	<div class="card-body">
-		<button type="button" class="btn btn-outline-danger" onclick="location.href = '/loginForm' ">관리자 로그인</button>
-		<button type="button" class="btn btn-outline-info" onclick="location.href = '/test/layout/main' ">메인페이지</button>
-		<button type="button" class="btn btn-outline-info" onclick="location.href = 'test/user/loginForm' ">로그인</button>
 	</div>
-	</form>
-			  </div>
-		  </div>
-	  </div>
-  </div>
+</div>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script src="assets/js/script.js"></script>
 
-	
-<%@ include file="../layout/footer.jsp" %>
+<%@ include file="../layout/footer.jsp"%>
