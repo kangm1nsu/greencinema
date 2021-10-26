@@ -63,9 +63,13 @@ public class PageControllerTest {
 	
 	
 	//민환 영역 ------------------
-	@GetMapping("test/admin/joinMovieForm")
+	@GetMapping("test/admin/addSchedule")
 	public String adminJoinMovieForm() {
-		return "admin/joinMovieForm";
+		return "admin/addSchedule";
+	}
+	@GetMapping("test/admin/updateSchedule")
+	public String adminUpdateSchedule() {
+		return "admin/updateSchedule";
 	}
 	@GetMapping("test/admin/movieManage")
 	public String adminMovieManage() {
@@ -79,6 +83,5 @@ public class PageControllerTest {
 	public String storeList() {
 		return "store/list";
 	}
-
 	
 }

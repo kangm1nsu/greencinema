@@ -10,7 +10,14 @@
 	margin-top: 15px;
 	display: flex;
 	width: 960px;
-	
+	justify-content: center;
+}
+
+.movieBox {
+	margin-top: 5px;
+	display: flex;
+	width: 960px;
+	justify-content: center;
 }
 
 h1 {
@@ -21,27 +28,18 @@ h1 {
 	width: 100px;
 }
 
-.movieBox {
-	margin-top: 5px;
-	display: flex;
-	width: 960px;
-}
+
 .movieBox p {
 	width: 100px;
 }
 
-.desc p:nth-child(4){
+ .desc p:nth-child(3){
 	width: 220px;
 }
-.movieBox p:nth-child(4){
+.movieBox p:nth-child(3){
 	width: 220px;
-}
-.desc p:nth-child(8){
-	width: 50px;
-}
-.movieBox p:nth-child(8){
-	width: 50px;
-}
+} 
+
 .desc p:last-child{
 	width: 100px;
 }
@@ -64,4 +62,9 @@ h1 {
 	border:none;
 	border-radius: 15px;
 	box-shadow: 0 4px 16px rgba(0,79,255,0.3);
+}
+.addBox{
+	display: flex;
+	justify-content: center;
+	
 }
