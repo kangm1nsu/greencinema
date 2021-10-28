@@ -20,4 +20,14 @@ public class ResController {
 	public String getPay() {
 		return "pay/pay";
 	}
+	
+	@GetMapping("/mlist")
+	public String getMovieList() {
+		return "res/movieList";
+	}
+	
+	@PostMapping("/res")
+	public String postResrve() {
+		return "res/reserve";
+	}
 }
