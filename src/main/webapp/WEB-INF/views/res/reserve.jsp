@@ -2,12 +2,6 @@
 	pageEncoding="UTF-8"%>
 	
 <%@ include file="../layout/header.jsp" %>	
-	
-<link rel="stylesheet" href="/css/res/reserve.css" />
-<link rel="stylesheet" href="/css/res/seat.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<%@ include file="../layout/header.jsp"%>
 
 <link rel="stylesheet" href="/css/reserve.css" />
 <link rel="stylesheet" href="/css/seat.css" />
