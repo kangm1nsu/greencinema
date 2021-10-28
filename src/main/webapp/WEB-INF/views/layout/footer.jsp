@@ -2,12 +2,12 @@
 
     <style>
         .footer {
-            height: 140px;
+            height: 100px;
             text-align: center;
         }
     </style>
-    <div class="footer" style=" background-color:darkgrey;">
-        <img src=" /img/logo_black.png" style=" width: 100px; height: 100px; ">
+    <div class="footer" style=" background-color:#f8f8fa;">
+        <img src=" /img/logo_black.png" style=" width: 50px; height: 50px; ">
         🎞Green Cinema🎬 | 📱 010-1234-5678 | ⭐사랑시
         고백구 행복동 |
         <a href="https://www.instagram.com/sanay_sj/"><img src="/img/instagram_logo.png"
@@ -23,10 +23,6 @@
 
 
     </div>
-
-
-
-
 
     </body>
 

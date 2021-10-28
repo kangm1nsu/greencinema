@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.manage {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	height:50px;
+}
+
+.manage a{
+	margin-top: 15px;
+	
+}
+
+.header {
+	display: flex;
+	width: 960px;
+	margin: 0 auto;
+}
+
+.header a{
+	margin: 5px;
+}
+
+.header_hr {
+	border: 2px solid #666;
+	
+	
+}

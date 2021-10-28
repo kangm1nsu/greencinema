@@ -15,8 +15,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<link rel="stylesheet" href="/css/pay.css" />
-
+<link rel="stylesheet" href="/css/pay/pay.css" />
+<%@ include file="../layout/header.jsp"%>
 <body>
 	<div class="container m_box">
 		<!-- 카카오페이 시작 -->

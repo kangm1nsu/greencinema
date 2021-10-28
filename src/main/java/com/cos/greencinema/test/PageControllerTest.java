@@ -51,9 +51,9 @@ public class PageControllerTest {
 	
 	
 	//민홍 영역 --------------
-	@GetMapping("test/res/Reserve")
+	@GetMapping("test/res/reserve")
 	public String resReserve() {
-		return "res/Reserve";
+		return "res/reserve";
 	}
 	
 	@GetMapping("test/pay/pay")
@@ -74,6 +74,10 @@ public class PageControllerTest {
 	@GetMapping("test/admin/resManage")
 	public String adminresManage() {
 		return "admin/resManage";
+	}
+	@GetMapping("test/store/list")
+	public String storeList() {
+		return "store/list";
 	}
 
 	

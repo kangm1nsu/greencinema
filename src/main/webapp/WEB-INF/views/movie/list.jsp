@@ -2,28 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<style>
-	.card-img-top {
-		width: 230px;
-		height: 331px;
-	}
-	.container{
-		display: flex  !important;
-		
-		flex-wrap: wrap;
-	}
-	
-	.card{
-		margin: 5px;
-	}
-	h2{text-align: center; margin-top:10px;}
-	.wrap{
-		width :1000px;
-	}
-</style>
+<link rel="stylesheet" href="/css/movie/list.css" />
 
 
-<!--  -->
 <div class="wrap">
 		<h2>전체 영화</h2>
 	<div class="container">
@@ -35,7 +16,7 @@
 			<div class="card-body">
 				<h4 class="card-title">베놈2</h4>
 				<p class="card-text">개봉일 2021.10.13</p>
-				<a href="#" class="btn btn-primary">상세보기</a>
+				<a href="/test/movie/detail" class="btn btn-primary">상세보기</a>
 			</div>
 		</div>
 		<br>
@@ -48,7 +29,7 @@
 			<div class="card-body">
 				<h4 class="card-title">베놈2</h4>
 				<p class="card-text">개봉일 2021.10.13</p>
-				<a href="#" class="btn btn-primary">상세보기</a>
+				<a href="/test/movie/detail" class="btn btn-primary">상세보기</a>
 			</div>
 		</div>
 		<br>
@@ -60,7 +41,7 @@
 			<div class="card-body">
 				<h4 class="card-title">베놈2</h4>
 				<p class="card-text">개봉일 2021.10.13</p>
-				<a href="#" class="btn btn-primary">상세보기</a>
+				<a href="/test/movie/detail" class="btn btn-primary">상세보기</a>
 			</div>
 		</div>
 		<br>
@@ -73,7 +54,7 @@
 			<div class="card-body">
 				<h4 class="card-title">베놈2</h4>
 				<p class="card-text">개봉일 2021.10.13</p>
-				<a href="#" class="btn btn-primary">상세보기</a>
+				<a href="/test/movie/detail" class="btn btn-primary">상세보기</a>
 			</div>
 		</div>
 		<br>
@@ -86,7 +67,7 @@
 			<div class="card-body">
 				<h4 class="card-title">베놈2</h4>
 				<p class="card-text">개봉일 2021.10.13</p>
-				<a href="#" class="btn btn-primary">상세보기</a>
+				<a href="/test/movie/detail" class="btn btn-primary">상세보기</a>
 			</div>
 		</div>
 		<br>
