@@ -11,7 +11,7 @@
 			</div>
 			<div class="form-group">
 				<input type="datetime" class="form-control item" id="movieTime"
-					placeholder="상영일 및시간">
+					placeholder="상영일 및 시간">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item" id="SCinema"

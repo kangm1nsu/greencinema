@@ -20,7 +20,7 @@
 		<p>베놈</p>
 		<p>2021.10.25 15:40</p>
 		<p>A관</p>
-		<button onclick="">수정</button>
+		<a href="/test/admin/updateSchedule" class="sizedown">수정</a>
 		<button onclick="">삭제</button>
 	</div>
 	<div class="addBox">

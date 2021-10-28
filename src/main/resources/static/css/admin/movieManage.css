@@ -68,3 +68,13 @@ h1 {
 	justify-content: center;
 	
 }
+.sizedown{
+	width: 40px;
+	height: 20px;
+	color: #fff;
+	margin:3px;
+	background:#004fff;
+	border:none;
+	border-radius: 15px;
+	box-shadow: 0 4px 16px rgba(0,79,255,0.3);
+}
