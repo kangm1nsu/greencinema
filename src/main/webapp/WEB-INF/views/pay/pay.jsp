@@ -109,7 +109,7 @@
 			pay_method : 'card',
 			merchant_uid : 'TC0ONETIME' + new Date().getTime(),
 			name : '상품1', //결제창에서 보여질 이름
-			amount : 1000000, //실제 결제되는 가격
+			amount : sessionStorage.getItem('price'), //실제 결제되는 가격
 			buyer_email : 'iamport@siot.do',
 			buyer_name : '구매자이름',
 			buyer_tel : '010-1234-5678',
@@ -121,8 +121,8 @@
 				var msg = '결제가 완료되었습니다.';
 				msg += '고유ID : ' //+ rsp.imp_uid;
 				msg += '상점 거래ID : ' //+ rsp.merchant_uid;
-				msg += '결제 금액 : 14000' //+ rsp.paid_amount;
-				msg += '카드 승인번호 : ' //+ rsp.apply_num;
+				msg += '결제 금액 :' + sessionStorage.getItem('price')  //+ rsp.paid_amount;
+				msg += '카드 승인번호 : 1234-5678-9101-1213' //+ rsp.apply_num;
 
 			} else {
 				var msg = '결제에 실패하였습니다.';
@@ -147,8 +147,8 @@
           "merchantUserKey": "u86j4ripEt8LRfPGzQ8",
           "merchantPayKey": "1",
           "productName": "상품1",
-          "totalPayAmount": "10000",
-          "taxScopeAmount": "10000",
+          "totalPayAmount": sessionStorage.getItem('price'),
+          "taxScopeAmount": sessionStorage.getItem('price'),
           "taxExScopeAmount": "0",
           "returnUrl": "http://localhost:8080/res"
         });
@@ -164,7 +164,7 @@
 			pay_method : 'card',
 			merchant_uid : 'tosstest' + new Date().getTime(),
 			name : '상품1', //결제창에서 보여질 이름
-			amount : 1000000, //실제 결제되는 가격
+			amount : sessionStorage.getItem('price'), //실제 결제되는 가격
 			buyer_email : 'iamport@siot.do',
 			buyer_name : '구매자이름',
 			buyer_tel : '010-1234-5678',
@@ -176,8 +176,8 @@
 				var msg = '결제가 완료되었습니다.';
 				msg += '고유ID : ' //+ rsp.imp_uid;
 				msg += '상점 거래ID : ' //+ rsp.merchant_uid;
-				msg += '결제 금액 : 14000' //+ rsp.paid_amount;
-				msg += '카드 승인번호 : ' //+ rsp.apply_num;
+				msg += '결제 금액 : ' + sessionStorage.getItem('price') //+ rsp.paid_amount;
+				msg += '카드 승인번호 : 1234-5678-9101-1213' //+ rsp.apply_num;
 
 			} else {
 				var msg = '결제에 실패하였습니다.';
