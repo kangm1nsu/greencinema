@@ -27,7 +27,7 @@ public class PageControllerTest {
 	public String userMyRes() {
 		return "user/myRes";
 	}
-	
+
 	//상진 영역 ----------------
 	
 	@GetMapping("test/user/joinForm")
@@ -59,6 +59,10 @@ public class PageControllerTest {
 	@GetMapping("test/pay/pay")
 	public String pay() {
 		return "pay/pay";
+	}
+	@GetMapping("test/res/movieList")
+	public String payMovieList() {
+		return "res/movieList";
 	}
 	
 	
