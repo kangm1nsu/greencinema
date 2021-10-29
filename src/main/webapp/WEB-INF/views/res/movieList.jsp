@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="/css/movieList.css" />
+<link rel="stylesheet" href="/css/res/movieList.css" />
 <body>
 	<div class="reserveContainer">
 		<!-- 영화목록 시작 -->
@@ -100,6 +100,9 @@
 				movie[i].classList.remove("selected");
 			}
 			event.target.classList.add("selected");
+			//let movieName = $(".movie selected")[0];
+			let movieName = document.querySelector('.movie.selected').innerHTML;
+			sessionStorage.setItem("movie", movieName);
 		}
 	}
 
@@ -178,24 +181,29 @@
 	        
 	        //class넣기
 	        button.classList = 'movieDateWrapper';
-	        spanWeekOfDay.classList = 'movieWeekOfDay';
-	        spanDay.classList = 'movieDay';
+	        spanWeekOfDay.classList = 'movie-week-of-day';
+	        spanDay.classList = 'movie-day';
 
 	        const dayOfWeek = weekOfDay[new Date(year + '-' + month + '-' + i).getDay()];
 			
 	        //요일 넣기
 	        if (dayOfWeek === '토') {
-	            spanWeekOfDay.classList.add('saturday');
-	            spanDay.classList.add('saturday');
+	            button.classList.add('saturday');
+	            //spanDay.classList.add('saturday');
 	        } else if (dayOfWeek === '일') {
-	            spanWeekOfDay.classList.add('sunday');
-	            spanDay.classList.add('sunday');
+	            button.classList.add('sunday');
+	            //spanDay.classList.add('sunday');
 	        }
+	        
 	        spanWeekOfDay.innerHTML = dayOfWeek;
-	        button.append(spanWeekOfDay);
+	        //button.append(spanWeekOfDay);
 	        //날짜 넣기
 	        spanDay.innerHTML = i;
-	        button.append(spanDay);
+	        console.log(i)
+	        let moviedDate = dayOfWeek + " " + i
+	        
+	        button.append(moviedDate)
+	        //button.append(spanDay);
 	        //button.append(i);
 
 	        reserveDate.append(button);
