@@ -27,7 +27,7 @@ public class ResController {
 	}
 	
 	@PostMapping("/res")
-	public String postResrve() {
+	public String postReserve() {
 		return "res/reserve";
 	}
 }
