@@ -5,8 +5,12 @@
 
 <link rel="stylesheet" href="/css/res/reserve.css" />
 <link rel="stylesheet" href="/css/res/seat.css" />
+<<<<<<< HEAD
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+=======
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+>>>>>>> master
 </head>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -21,7 +25,7 @@
 					<div class="select-seat-information">
 						<div class="selected-movie">
 							<div class="movie-container">
-								<div class="selected-movie" id="movie">베놈2</div>
+								<div class="selected-movie" id="movie">${sessionStorage.movie}</div>
 							</div>
 						</div>
 						<div class="select-seat-information-wrapper">
@@ -220,6 +224,10 @@
 	</div>
 </body>
 <script>
+let movie = sessionStorage.getItem('movie');
+console.log(movie);
+$('#movie').append(movie)
+
 let container = $('.container')[0];
 let seats = document.querySelectorAll(".row .seat:not(.sold)");
 let count = $('#count')[0];
@@ -306,7 +314,7 @@ container.addEventListener("click", (e) => {
   	//let seatName = document.querySelector(".seatName");
   	let seatName = $(".seatName")[0];
   	seatName.innerText = string;
-
+	console.log(string);
 });
 
 // Initial count and total set
