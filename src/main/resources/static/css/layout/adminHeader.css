@@ -41,3 +41,6 @@ a {
 	
 	
 }
+.manage a:last-child {
+	color:red;
+}
