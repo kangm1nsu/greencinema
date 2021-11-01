@@ -18,11 +18,11 @@ body {
   margin: 0;
 }
 
-.movie-container {
+.movieContainer {
   margin: 20px 0;
 }
 
-.movie-container select {
+.movieContainer select {
   background-color: #fff;
   border: 0;
   border-radius: 5px;
