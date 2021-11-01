@@ -11,50 +11,50 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <body>
 	<br>
-	<div class="all-wrapper">
-		<div class="select-wrapper">
-			<div class="select-title">인원/좌석</div>
-			<div class="select-seat-container">
-				<div class="select-seat-number-container">
+	<div class="allWrapper">
+		<div class="selectWrapper">
+			<div class="selectTitle">인원/좌석</div>
+			<div class="selectSeatContainer">
+				<div class="selectSeatNumberContainer">
 
-					<div class="select-seat-information">
-						<div class="selected-movie">
-							<div class="movie-container">
-								<div class="selected-movie" id="movie">${sessionStorage.movie}</div>
+					<div class="selectSeatInformation">
+						<div class="selectedMovie">
+							<div class="movieContainer">
+								<div class="selectedMovie" id="movie">${sessionStorage.movie}</div>
 							</div>
 						</div>
-						<div class="select-seat-information-wrapper">
-							<div class="select-theater-place selected-theater-place-info">GC서면</div>
-							<div class="select-theater-place selected-theater-place-info">1관
+						<div class="selectSeatInformationWrapper">
+							<div class="selectTheaterPlaceSelectedTheaterPlaceInfo">GC서면</div>
+							<div class="selectTheaterPlaceSelectedTheaterPlaceInfo">1관
 								4층</div>
-							<div class="select-theater-place">
-								<span>남은좌석</span><span class="remain-seats" id="remain-seats">100</span>/<span
-									class="all-seats">100</span>
+							<div class="selectTheaterPlace">
+								<span>남은좌석</span><span class="remainSeats" id="remainSeats">100</span>/<span
+									class="allSeats">100</span>
 							</div>
 
 						</div>
-						<div class="select-theater-date">
-							<div class="theater-date">2021.10.18(월)</div>
-							<div class="theater-time">16:50</div>
+						<div class="selectTheaterDate">
+							<div class="theaterDate">2021.10.18(월)</div>
+							<div class="theaterTime">16:50</div>
 						</div>
 
-						<div class="select-theater-date">
-							<div class="theater-date"></div>
-							<div class="theater-time"></div>
+						<div class="selectTheaterDate">
+							<div class="theaterDate"></div>
+							<div class="theaterTime"></div>
 						</div>
-						<div class="selected-seats-wrapper">
-							<span class="selected-seats-title">좌석번호&nbsp;&nbsp;&nbsp;</span>
+						<div class="selectedSeats-Wrapper">
+							<span class="selectedSeatsTitle">좌석번호&nbsp;&nbsp;&nbsp;</span>
 							<span class="seatName">선택한 좌석이 없습니다.</span>
 						</div>
-						<div class="ticket-price-wrapper">
-							<div class="ticket-price-title">가격</div>
-							<div class="ticket-price">
+						<div class="ticketPriceWrapper">
+							<div class="ticketPriceTitle">가격</div>
+							<div class="ticketPrice">
 								<span id="total">0</span>&nbsp;원
 							</div>
 						</div>
 
 						<form action="/pay" class="seatForm" method="post">
-							<button type="submit" class="reserve-button">
+							<button type="submit" class="reserveBtn">
 								결제&nbsp;&nbsp;<img src="/img/kakaoPay.png" class=logo><img
 									src="/img/naverPay.png" class=logo><img
 									src="/img/toss.png" class=logo>
@@ -63,9 +63,9 @@
 
 					</div>
 				</div>
-				<div class="reserve-number-wrapper">
-					<div class="reserve-number-title">선택된 좌석 수</div>
-					<div class="reserve-number">
+				<div class="reserveNumberWrapper">
+					<div class="reserveNumberTitle">선택된 좌석 수</div>
+					<div class="reserveNumber">
 						<span id="count"></span>
 					</div>
 				</div>
