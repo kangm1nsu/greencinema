@@ -49,6 +49,8 @@
 			<div class="reserveDate">
 				<div class="reserveYear"></div>
 				<div class="reserveMonth"></div>
+				<div class="reserveDay">
+				</div>
 			</div>
 		</div>
 		<!--  상영날짜 끝 -->
@@ -162,10 +164,11 @@
 <!--  날짜 -->
 <script>
 	let date = new Date();
-	let lastDay = new Date(date.getFullYear(), date.getMonth() + 0, 31);
+	let lastDay = new Date(date.getFullYear(), date.getMonth()+1, 0);
 	let reserveDate = $(".reserveDate");
 	let reserveYear = $(".reserveYear");
 	let reserveMonth = $(".reserveMonth");
+	let reserveDay = $(".reserveDay");
 	
 	function insertDate() {
 		let weekOfDay = ['일', '월', '화', '수', '목', '금', '토'];
@@ -206,7 +209,7 @@
 	        //button.append(spanDay);
 	        //button.append(i);
 
-	        reserveDate.append(button);
+	        reserveDay.append(button);
 			
 	        
 	    	
