@@ -31,8 +31,8 @@
 					CINEMA</a>
 			</h1>
 			<div class="sign">
-					<a href="/test/user/loginForm">로그인</a>
-					<a href="/test/user/joinForm">회원가입</a>
+					<a href="/loginForm">로그인</a>
+					<a href="/joinForm">회원가입</a>
 			</div>
 		</div>
 		<div id="nav" class="nav_bar">

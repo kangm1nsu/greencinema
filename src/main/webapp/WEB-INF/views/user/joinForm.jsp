@@ -5,30 +5,30 @@
 <link rel="stylesheet" href="/css/user/joinForm.css" />
 <div class="resi_form">
 	<div class="registration-form">
-		<form>
+		<form action="/join"  method="post">
 			<b>GreenCinema 회원가입</b>
 			<div class="form-group">
-				<input type="text" class="form-control item" id="username"
+				<input type="text" class="form-control item" id="username" name="username"
 					placeholder="아이디">
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control item" id="password"
+				<input type="password" class="form-control item" id="password" name="password"
 					placeholder="비밀번호">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control item" id="email"
+				<input type="text" class="form-control item" id="email" name="email"
 					placeholder="이메일">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control item" id="phone-number"
+				<input type="text" class="form-control item" id="tel" name="tel"
 					placeholder="연락처">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control item" id="birth-date"
+				<input type="text" class="form-control item" id="birthDate" name="birthDate"
 					placeholder="생년월일">
 			</div>
 			<div class="form-group">
-				<button type="button" class="btn btn-block create-account">가입하기</button>
+				<button type="submit" class="btn btn-block create-account">가입하기</button>
 			</div>
 		</form>
 
