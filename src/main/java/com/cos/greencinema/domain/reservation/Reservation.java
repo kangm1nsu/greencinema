@@ -32,7 +32,9 @@ public class Reservation {
 	@JoinColumn(name="scheduleId")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Schedule schedule;
-		
+	
+	private String seat;
+	
 	private LocalDateTime createdAt;
 
 	@PrePersist // 디비에 INSERT 되기 직전에 실행
