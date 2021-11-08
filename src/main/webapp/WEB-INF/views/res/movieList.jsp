@@ -21,9 +21,11 @@
 			</div>
 			<div class="movieListWrapper">
 				<div class="movieList">
-					<div class="movie">듄</div>
-					<div class="movie">모르겠다 에효</div>
-					<div class="movie">베놈</div>
+					<c:forEach var="movie"  items="${movieEntity}">
+					<form onsubmit="update1(event, ${movie.id})">
+						<button type="submit" class="movie">${movie.movieTitle}</button>
+					</form>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -34,10 +36,29 @@
 			<div class="theaterContainer">
 				<div class="theaterWrapper">
 					<div class="theaterLocationWrapper">
-						<button class="theaterLocation">부산(1)</button>
+					<c:choose>
+						<c:when test="${empty regionEntity}">
+						<button class="theaterLocation">예매할 영화를 선택하세요</button>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="regionEntity"  items="${regionEntity}" >
+							<form onsubmit="update2(event, ${regionEntity.id})">
+								<button type="submit" class="theaterLocation">${regionEntity.id}</button>
+							</form>
+							</c:forEach>				
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="theaterPlaceWrapper">
-						<button class="theaterPlace">서면</button>
+					<c:choose>
+						<c:when test="${empty rNameEntity}">
+						</c:when>
+						<c:otherwise>
+						<c:forEach var="location"  items="${locationEntity}">
+						<button class="theaterPlace">${location}</button>
+						</c:forEach>				
+						</c:otherwise>
+					</c:choose>
 					</div>
 				</div>
 			</div>
@@ -60,18 +81,12 @@
 			<div class="reserveTime">
 				<div class="reserveWhere">4관(Green) 4층(총 100석)</div>
 				<div class="reserveTimeWrapper">
+				<c:forEach var="schedule"  items="${scheduleEntity}">
 					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">12:20</span>
+						<span class="reserveTimeWant">${schedule.startingTime}</span>
 					</button>
 					<span class="reserveTimeRemain">100석</span>
-					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">14:40</span>
-					</button>
-					<span class="reserveTimeRemain">100석</span>
-					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">17:00</span>
-					</button>
-					<span class="reserveTimeRemain">100석</span>
+				</c:forEach>
 					<!--  상영시간 끝 -->
 				</div>
 			</div>
@@ -91,7 +106,8 @@
 	let movie = $(".movie");
 	let loc = $(".theaterLocation");
 	let place = $(".theaterPlace");
-
+	let time = $(".reserveTimeWant")
+	
 	// 영화 제목 클릭 시 작동 함수
 	function onclick(e) {
 		console.log(e.target);
@@ -107,14 +123,50 @@
 			sessionStorage.setItem("movie", movieName);
 		}
 	}
-
+		
 	// 영화제목 클릭 시 onclick 함수 실행 ( 클래스명 바꿈 )
 	function init() {
 		for (var i = 0; i < movie.length; i++) {
 			movie[i].addEventListener("click", onclick);
 		}
 	}
-
+	
+	// 영화 제목 클릭 - 비동기 요청
+	async function update1(event, id) {
+		// console.log(event)
+		event.preventDefault();
+		// 주소: Put board/3
+		// Update board SET title = ?, content = ?, WHERE id = ?
+		let regionUpdateDto = {
+			movieTitle: document.querySelector('.movie.selected').innerHTML
+		};
+		
+		console.log(regionUpdateDto);
+		console.log(JSON.stringify(regionUpdateDto));
+		// JSON.stringify(자바스크립트 오브젝트) => 리턴 json
+		// JSON.parse(제이슨 문자열) => 리턴 자바스크립트 오브젝트
+		
+		let response = await fetch("http://localhost:8080/mlist/region/"+id, { // 응답을 기다리기 위해 await 사용
+			method: 'POST',
+			body: JSON.stringify(regionUpdateDto),
+			headers: {
+				"Content-Type": "application/json; charset=utf-8"
+			}
+		});
+		
+		let parseResponse = await response.json(); // 나중에 스프링함수에서 리턴될 때 뭐가 리턴되는지 확인해보자!!
+		
+		// response.text()로 변경해보자
+		console.log(parseResponse)
+		
+		if(parseResponse.code == 1){
+			//alert("업데이트 성공");
+			location.href="/mlist/region/"+id
+		} else {
+			alert(parseResponse.msg);
+		}
+	}
+	
 	// 극장 지역 선택(loc) 시 함수
 	function onclick2(e) {
 		console.log(e.target);
@@ -123,8 +175,14 @@
 		} else {
 			for (var i = 0; i < loc.length; i++) {
 				loc[i].classList.remove("selectedLocation");
-			}
+		}
 			event.target.classList.add("selectedLocation");
+			let lName = document.querySelector('.theaterLocation.selectedLocation').innerHTML;
+			let locationName = lName.split('(')[0];
+			console.log(locationName)
+			sessionStorage.setItem("location", locationName);
+			
+			
 		}
 	}
 
@@ -134,7 +192,42 @@
 			loc[i].addEventListener("click", onclick2);
 		}
 	}
-
+	
+	// 극장 지역 클릭 - 비동기 요청 
+	async function update2(event, rName) {
+		// console.log(event)
+		event.preventDefault();
+		// 주소: Put board/3
+		// Update board SET title = ?, content = ?, WHERE id = ?
+		let locationUpdateDto = {
+			rName: document.querySelector('.theaterLocation.selectedLocation').innerHTML
+		};
+		
+		console.log(locationUpdateDto);
+		console.log(JSON.stringify(locationUpdateDto));
+		// JSON.stringify(자바스크립트 오브젝트) => 리턴 json
+		// JSON.parse(제이슨 문자열) => 리턴 자바스크립트 오브젝트
+		
+		let response = await fetch("http://localhost:8080/mlist/location/"+id, { // 응답을 기다리기 위해 await 사용
+			method: 'POST',
+			body: JSON.stringify(locationUpdateDto),
+			headers: {
+				"Content-Type": "application/json; charset=utf-8"
+			}
+		});
+		
+		let parseResponse = await response.json(); // 나중에 스프링함수에서 리턴될 때 뭐가 리턴되는지 확인해보자!!
+		
+		// response.text()로 변경해보자
+		console.log(parseResponse)
+		
+		if(parseResponse.code == 1){
+			alert("업데이트 성공");
+			location.href="/mlist/location/"+id
+		} else {
+			alert(parseResponse.msg);
+		}
+	}	
 	// 극장 장소 선택(place) 시 함수
 	function onclick3(e) {
 		console.log(e.target);
@@ -145,6 +238,9 @@
 				place[i].classList.remove("selectedPlace");
 			}
 			event.target.classList.add("selectedPlace");
+			let placeName = document.querySelector('.theaterPlace.selectedPlace').innerHTML;
+			console.log(placeName)
+			sessionStorage.setItem("place", placeName);
 		}
 	}
 
@@ -154,11 +250,35 @@
 			place[i].addEventListener("click", onclick3);
 		}
 	}
+	
+	//
+		// 시간(reserveTimeBtn) 선택 시 함수
+		function onclick5(e) {
+		console.log(e.target);
+		if (e.target.classList[1] === "selectedTime") {
+			e.target.classList.remove("selectedTime");
+		} else {
+			for (var i = 0; i < time.length; i++) {
+				time[i].classList.remove("selectedTime");
+			}
+			event.target.classList.add("selectedTime");
+			let startingTime = document.querySelector('.reserveTimeWant.selectedTime').innerHTML;
+			console.log(startingTime)
+			sessionStorage.setItem("startingTime", startingTime);
+		}
+	}
 
+	// 극장 장소 클릭 시 onclick 함수 실행 ( 클래스명 바꿈 )
+	function init5() {
+		for (var i = 0; i < time.length; i++) {
+			time[i].addEventListener("click", onclick5);
+		}
+	}
+	
 	init();
 	init2();
 	init3();
-	
+	init5();
 </script>
 
 <!--  날짜 -->
@@ -202,7 +322,7 @@
 	        //button.append(spanWeekOfDay);
 	        //날짜 넣기
 	        spanDay.innerHTML = i;
-	        console.log(i)
+	        //console.log(i)
 	        let moviedDate = dayOfWeek + " " + i
 	        
 	        button.append(moviedDate)
@@ -226,6 +346,13 @@
 	    				dateBtn[i].classList.remove("selectedBtn");
 	    			}
 	    			event.target.classList.add("selectedBtn");
+	    			let rYear = document.querySelector('.reserveYear').innerHTML + "년";
+	    			let rMonth = document.querySelector('.reserveMonth').innerHTML + "월";
+	    			let rDay = document.querySelector('.movieDateWrapper.selectedBtn').innerHTML;
+	    			let rDate = rDay.slice(-1) +"일";
+	    			sessionStorage.setItem("year", rYear);
+	    			sessionStorage.setItem("month", rMonth);
+	    			sessionStorage.setItem("date", rDate);
 	    		}
 	    	}
 	    	
@@ -237,6 +364,7 @@
 	    	}
 	    	
 	    	init4();
+	    		
 	}
 	
 	insertDate();

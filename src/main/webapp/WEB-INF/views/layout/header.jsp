@@ -36,7 +36,7 @@
 			</h1>
 			<div class="sign">
 				<c:choose>
-					<c:when test="${empty sessionScope.principal}">
+					<c:when test="${empty sessionScope.principal.id}">
 						<a href="/loginForm" class="beforeLogin">로그인</a>
 						<a href="/joinForm" class="beforeLogin">회원가입</a>
 					</c:when>
@@ -51,7 +51,7 @@
 		<div id="nav" class="nav_bar">
 
 			<div>
-				<a href="/test/res/reserve">예매</a>
+				<a href="/mlist">예매</a>
 			</div>
 			<div>ㅣ</div>
 			<div>

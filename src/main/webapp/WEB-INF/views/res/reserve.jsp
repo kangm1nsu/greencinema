@@ -5,12 +5,9 @@
 
 <link rel="stylesheet" href="/css/res/reserve.css" />
 <link rel="stylesheet" href="/css/res/seat.css" />
-<<<<<<< HEAD
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-=======
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
->>>>>>> master
 </head>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -25,13 +22,11 @@
 					<div class="selectSeatInformation">
 						<div class="selectedMovie">
 							<div class="movieContainer">
-								<div class="selectedMovie" id="movie">${sessionStorage.movie}</div>
+								<div class="selectedMovie" id="movie"></div>
 							</div>
 						</div>
 						<div class="selectSeatInformationWrapper">
-							<div class="selectTheaterPlaceSelectedTheaterPlaceInfo">GC서면</div>
-							<div class="selectTheaterPlaceSelectedTheaterPlaceInfo">1관
-								4층</div>
+							<div class="selectTheaterPlace" id="cinema"></div>
 							<div class="selectTheaterPlace">
 								<span>남은좌석</span><span class="remainSeats" id="remainSeats">100</span>/<span
 									class="allSeats">100</span>
@@ -39,8 +34,8 @@
 
 						</div>
 						<div class="selectTheaterDate">
-							<div class="theaterDate">2021.10.18(월)</div>
-							<div class="theaterTime">16:50</div>
+							<div class="theaterDate" id="schedule"></div>
+							<div class="theaterTime" id="startingTime"></div>
 						</div>
 
 						<div class="selectTheaterDate">
@@ -61,8 +56,7 @@
 						<form action="/pay" class="seatForm" method="post">
 							<button type="submit" class="reserveBtn">
 								결제&nbsp;&nbsp;<img src="/img/kakaoPay.png" class=logo><img
-									src="/img/naverPay.png" class=logo><img
-									src="/img/toss.png" class=logo>
+									src="/img/naverPay.png" class=logo>
 							</button>
 						</form>
 
@@ -225,8 +219,18 @@
 </body>
 <script>
 let movie = sessionStorage.getItem('movie');
-console.log(movie);
+let loc = sessionStorage.getItem('location');
+let place = sessionStorage.getItem('place');
+let cinema = loc + " " +place
+let year = sessionStorage.getItem('year');
+let month = sessionStorage.getItem('month');
+let date = sessionStorage.getItem('date');
+let schedule = year + " " + month + " " + date;
+let startingTime = sessionStorage.getItem('startingTime')
 $('#movie').append(movie)
+$('#cinema').append(cinema)
+$('#schedule').append(schedule)
+$('#startingTime').append(startingTime)
 
 let container = $('.container')[0];
 let seats = document.querySelectorAll(".row .seat:not(.sold)");

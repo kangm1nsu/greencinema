@@ -2,6 +2,7 @@ package com.cos.greencinema.domain.reservation;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,8 +34,10 @@ public class Reservation {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Schedule schedule;
 	
+	@Column(nullable = false, length = 50)
 	private String seat;
 	
+	@Column(nullable = false, length = 50)
 	private LocalDateTime createdAt;
 
 	@PrePersist // 디비에 INSERT 되기 직전에 실행

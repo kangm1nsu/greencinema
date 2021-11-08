@@ -60,6 +60,9 @@
 .movie {
 	padding: 10px;
 	display: flex;
+	background-color: #F0E68C;
+	border: none;
+	color: black;
 }
 
 .selected {
@@ -93,6 +96,7 @@
 	color: black;
 	flex-grow: 1;
 	flex-direction: column;
+	text-align: center;
 }
 
 .theaterPlaceWrapper {
@@ -102,8 +106,6 @@
 	flex-direction: column;
 	flex-grow: 1;
 	color: black;
-	/* 	overflow: scroll;
-	overflow-x: hidden; */
 }
 
 .theaterLocation {
@@ -114,7 +116,7 @@
 	height: 40px;
 	font-size: 12px;
 	font-weight: bold;
-	text-align: right;
+	text-align: center;
 }
 
 .selectedLocation {

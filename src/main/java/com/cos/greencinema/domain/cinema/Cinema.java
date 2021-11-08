@@ -1,5 +1,6 @@
 package com.cos.greencinema.domain.cinema;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class Cinema {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false, length = 50)
 	private String cName;
 	
 	@JoinColumn(name="locationId")
