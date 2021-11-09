@@ -1,5 +1,6 @@
 package com.cos.greencinema.domain.location;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,8 @@ public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String lName;
+	@Column(nullable = false, length = 50, unique = true)
+	private String locationName;
 	
 	@JoinColumn(name="regionId")
 	@ManyToOne(fetch = FetchType.EAGER)

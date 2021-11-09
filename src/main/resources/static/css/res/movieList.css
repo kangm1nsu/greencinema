@@ -60,6 +60,9 @@
 .movie {
 	padding: 10px;
 	display: flex;
+	background-color: #F0E68C;
+	border: none;
+	color: black;
 }
 
 .selected {
@@ -93,17 +96,15 @@
 	color: black;
 	flex-grow: 1;
 	flex-direction: column;
+	text-align: center;
 }
 
 .theaterPlaceWrapper {
 	padding-right: 2px;
-	margin-top: 2px;
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	color: black;
-	/* 	overflow: scroll;
-	overflow-x: hidden; */
 }
 
 .theaterLocation {
@@ -114,7 +115,7 @@
 	height: 40px;
 	font-size: 12px;
 	font-weight: bold;
-	text-align: right;
+	text-align: center;
 }
 
 .selectedLocation {
@@ -258,14 +259,17 @@
 	border: 1px solid white;
 	border-left-style: none;
 	border-right-style: none;
+	display: flex;
 }
 
 .reserveTimeBtn {
 	border: 1px solid gray;
 	background-color: #F0E68C;
-	width: 50px;
+	width: 90px;
 	height: 30px;
-	margin-left: 10px;
+	margin-right: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .reserveTimeBtn:focus {
