@@ -7,18 +7,14 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.greencinema.domain.user.User;
@@ -27,9 +23,7 @@ import com.cos.greencinema.handler.ex.MyAsyncNotFoundException;
 import com.cos.greencinema.util.MyAlgorithm;
 import com.cos.greencinema.util.SHA;
 import com.cos.greencinema.util.Script;
-
 import com.cos.greencinema.web.dto.CMRespDto;
-
 import com.cos.greencinema.web.dto.JoinReqDto;
 import com.cos.greencinema.web.dto.LoginReqDto;
 import com.cos.greencinema.web.dto.UserUpdateDto;
@@ -119,23 +113,10 @@ public class UserController {
 			}
 			model.addAttribute("errorMap", errorMap);
 			
-		}
-		return Script.back("아이디 또는 비밀번호가 잘못 입력 되었습니다.");
+			return Script.back("아이디 또는 비밀번호가 잘못 입력 되었습니다.");
+			
 			
 		}
-
-	public @ResponseBody String Login(@Valid LoginReqDto dto, BindingResult bindingResult) {
-		System.out.println("에러사이즈:" + bindingResult.getFieldErrors().size());
-
-		if( bindingResult.hasErrors() ) {
-			Map<String, String> errorMap = new HashMap<>();
-			for(FieldError error : bindingResult.getFieldErrors()) {
-				errorMap.put(error.getField(), error.getDefaultMessage());
-			}	
-			return Script.back(errorMap.toString());
-		} 
-		
-		// 일반 회원 로그인
 		User principal = userRepository.mLogin(dto.getUsername(), SHA.encrypt(dto.getPassword(), MyAlgorithm.SHA256));
 		// 일반 회원 로그인
 		if ( principal.getAdminNum() == 0 ) {
@@ -143,8 +124,6 @@ public class UserController {
 			
 			session.setAttribute("principal", principal);
 			return Script.href("/", "로그인 성공");
-			
-
 		} else {
 			return "/admin/movieManage";
 		}
