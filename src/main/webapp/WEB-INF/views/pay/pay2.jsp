@@ -19,7 +19,7 @@
 <body>
 </body>
 <script>
- 	$(function() {
+	$(function() {
 		//가맹점 식별코드
 		IMP.init('imp67606279');
 		IMP.request_pay({
@@ -46,41 +46,37 @@
 				alert(msg);
 				location.href="http://localhost:8080/mlist";
 			}
-			if( result ==0 ) { 
-
-                let dataDto = {
-                    movieName : sessionStorage.getItem('movie'),
-                    regionName : sessionStorage.getItem('location'),
-                    locationName : sessionStorage.getItem('place'),
-                    cinemaName : sessionStorage.getItem('cinemaName'),
-                    startingYear : sessionStorage.getItem('year'),
-                    startingMonth : sessionStorage.getItem('month'),
-                    startingDate : sessionStorage.getItem('date'),
-                    startingTime : sessionStorage.getItem('startingTime'),
-                    seat : sessionStorage.getItem('seat')
-                };
+			if( result ==0 ) {
 				jQuery.ajax({
                     url: "/reservation", //cross-domain error가 발생하지 않도록 주의해주세요
                     type: 'post',
-                    contentType: 'application/json',
                     dataType: 'json',
-                    data : JSON.stringify(dataDto)
+                    data: {
+                        movieName : sessionStorage.getItem('movie'),
+                        locationName : sessionStorage.getItem('location'),
+                        regionName : sessionStorage.getItem('place'),
+                        startingYear : sessionStorage.getItem('year'),
+                        startingMonth : sessionStorage.getItem('month'),
+                        startingDate : sessionStorage.getItem('date'),
+                        startingTime : sessionStorage.getItem('startingTime'),
+                        seat : sessionStorage.getItem('seat')
+                        //기타 필요한 데이터가 있으면 추가 전달
+                    }
                 }).done(function(data) {
                     //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                     if ( everythings_fine ) {
-                        console.log(data);
-        				alert('성공');
-                        location.href="http://localhost:8080/saveResForm";
+                        
+						
                     } else {
                         //[3] 아직 제대로 결제가 되지 않았습니다.
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
                     }
                 });
 				alert('성공');
-                location.href="http://localhost:8080/user/myRes";
+                location.href="http://localhost:8080/saveResForm";
                 //성공시 이동할 페이지
                 sessionStorage.clear();
-             } else {
+            } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
@@ -88,7 +84,8 @@
                 location.href="http://localhost:8080/mlist";
             }
 			alert(msg);							
-		}); 
+		});
 	});
+	// toss js 끝
 </script>
 </html>

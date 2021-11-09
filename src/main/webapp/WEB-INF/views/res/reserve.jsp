@@ -221,7 +221,7 @@
 let movie = sessionStorage.getItem('movie');
 let loc = sessionStorage.getItem('location');
 let place = sessionStorage.getItem('place');
-let cinema = loc + " " +place
+let cinema = loc + " " +place + " GC"
 let year = sessionStorage.getItem('year');
 let month = sessionStorage.getItem('month');
 let date = sessionStorage.getItem('date');
@@ -319,6 +319,7 @@ container.addEventListener("click", (e) => {
   	let seatName = $(".seatName")[0];
   	seatName.innerText = string;
 	console.log(string);
+	sessionStorage.setItem("seat", string);
 });
 
 // Initial count and total set

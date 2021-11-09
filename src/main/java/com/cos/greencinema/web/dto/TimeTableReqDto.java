@@ -1,7 +1,5 @@
 package com.cos.greencinema.web.dto;
 
-import com.cos.greencinema.domain.region.Region;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegionReqDto {
+public class TimeTableReqDto {
+	private String movieTitle;
 	private String regionName;
-	
-	public Region toEntity() {
-		Region region = new Region();
-		region.setRegionName(regionName);
-		return region;
-	}
+	private String locationName;
+	private String movLocId;
 }

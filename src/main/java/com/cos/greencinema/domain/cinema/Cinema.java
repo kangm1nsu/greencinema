@@ -24,7 +24,7 @@ public class Cinema {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(nullable = false, length = 50)
-	private String cName;
+	private String cinemaName;
 	
 	@JoinColumn(name="locationId")
 	@ManyToOne(fetch = FetchType.EAGER)

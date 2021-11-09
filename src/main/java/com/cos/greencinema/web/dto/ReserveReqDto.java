@@ -1,7 +1,5 @@
 package com.cos.greencinema.web.dto;
 
-import java.time.LocalDateTime;
-
 import com.cos.greencinema.domain.Schedule.Schedule;
 import com.cos.greencinema.domain.reservation.Reservation;
 import com.cos.greencinema.domain.user.User;
@@ -13,14 +11,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResReqDto {
+public class ReserveReqDto {
+	private String movieName;
+	private String  locationName;
+	private String regionName;
+	private String cinemaName;
+	private String startingYear;
+	private String startingMonth;
+	private String startingDate;
+	private String startingTime;
 	private String seat;
-	private LocalDateTime createdAt;
+	
 	
 	public Reservation toEntity(User principal, Schedule schedule) {
 		Reservation reservation = new Reservation();
 		reservation.setSeat(seat);
-		reservation.setCreatedAt(createdAt);
 		reservation.setUser(principal);
 		reservation.setSchedule(schedule);
 		return reservation;

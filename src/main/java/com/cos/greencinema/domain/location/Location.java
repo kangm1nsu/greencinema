@@ -24,7 +24,7 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(nullable = false, length = 50, unique = true)
-	private String lName;
+	private String locationName;
 	
 	@JoinColumn(name="regionId")
 	@ManyToOne(fetch = FetchType.EAGER)

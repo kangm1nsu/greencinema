@@ -1,7 +1,5 @@
 package com.cos.greencinema.web.dto;
 
-import java.time.LocalDateTime;
-
 import com.cos.greencinema.domain.Schedule.Schedule;
 import com.cos.greencinema.domain.cinema.Cinema;
 import com.cos.greencinema.domain.movie.Movie;

@@ -41,9 +41,9 @@
 						<button class="theaterLocation">예매할 영화를 선택하세요</button>
 						</c:when>
 						<c:otherwise>
-							<c:forEach var="regionEntity"  items="${regionEntity}" >
-							<form onsubmit="update2(event, ${regionEntity.id})">
-								<button type="submit" class="theaterLocation">${regionEntity.id}</button>
+							<c:forEach var="region"  items="${regionEntity}" >
+							<form onsubmit="update2(event, ${region.id})">
+								<button type="submit" class="theaterLocation">${region.regionName}</button>
 							</form>
 							</c:forEach>				
 						</c:otherwise>
@@ -51,11 +51,13 @@
 					</div>
 					<div class="theaterPlaceWrapper">
 					<c:choose>
-						<c:when test="${empty rNameEntity}">
+						<c:when test="${empty regionEntity}">
 						</c:when>
 						<c:otherwise>
 						<c:forEach var="location"  items="${locationEntity}">
-						<button class="theaterPlace">${location}</button>
+						<form onsubmit="update3(event, ${location.id})">
+							<button type="submit" class="theaterPlace">${location.locationName}</button>
+						</form>
 						</c:forEach>				
 						</c:otherwise>
 					</c:choose>
@@ -79,24 +81,33 @@
 		<div class="timePart">
 			<div class="timeTitle">시간</div>
 			<div class="reserveTime">
-				<div class="reserveWhere">4관(Green) 4층(총 100석)</div>
+				<div class="reserveWhere">현재 상영 중인 영화관</div>
 				<div class="reserveTimeWrapper">
-				<c:forEach var="schedule"  items="${scheduleEntity}">
-					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">${schedule.startingTime}</span>
+				<c:choose>
+						<c:when test="${empty timeEntity}">
+							<div class="reserveTime">상영시간표가 존재하지 않습니다</div>
+						</c:when>
+						<c:otherwise>
+				<c:forEach var="time"  items="${timeEntity}" varStatus="status">
+					<button class="reserveTimeBtn" type="submit">
+						<span class="reserveTimeWant">${time.substring(0,3)} ${time.substring(3)}</span>
 					</button>
-					<span class="reserveTimeRemain">100석</span>
-				</c:forEach>
+				</c:forEach>		
+						</c:otherwise>
+					</c:choose>
+		
 					<!--  상영시간 끝 -->
 				</div>
 			</div>
 			<div class="reserveOk">
+			<c:if test="${not empty timeEntity}">
 				<form action="/res" method="post">
 					<button class="reserveBtn" type="submit">
 						<span class="right"> → </span> <br> <span class="letter">
 							좌석선택 </span>
 					</button>
 				</form>
+				</c:if>
 			</div>
 		</div>
 
@@ -137,8 +148,10 @@
 		event.preventDefault();
 		// 주소: Put board/3
 		// Update board SET title = ?, content = ?, WHERE id = ?
+			movieTitle = document.querySelector('.movie.selected').innerHTML
+			console.log(movieTitle);
 		let regionUpdateDto = {
-			movieTitle: document.querySelector('.movie.selected').innerHTML
+			movieTitle: movieTitle
 		};
 		
 		console.log(regionUpdateDto);
@@ -194,13 +207,13 @@
 	}
 	
 	// 극장 지역 클릭 - 비동기 요청 
-	async function update2(event, rName) {
+	async function update2(event, id) {
 		// console.log(event)
 		event.preventDefault();
 		// 주소: Put board/3
 		// Update board SET title = ?, content = ?, WHERE id = ?
 		let locationUpdateDto = {
-			rName: document.querySelector('.theaterLocation.selectedLocation').innerHTML
+			regionName: document.querySelector('.theaterLocation.selectedLocation').innerHTML
 		};
 		
 		console.log(locationUpdateDto);
@@ -222,7 +235,7 @@
 		console.log(parseResponse)
 		
 		if(parseResponse.code == 1){
-			alert("업데이트 성공");
+			// alert("업데이트 성공");
 			location.href="/mlist/location/"+id
 		} else {
 			alert(parseResponse.msg);
@@ -251,8 +264,49 @@
 		}
 	}
 	
-	//
-		// 시간(reserveTimeBtn) 선택 시 함수
+	// 극장 장소 클릭 - 비동기 처리
+	async function update3(event, id) {
+		// console.log(event)
+		event.preventDefault();
+		// 주소: Put board/3
+		// Update board SET title = ?, content = ?, WHERE id = ?
+		let scheduleUpdateDto = {
+			movieTitle : sessionStorage.getItem("movie"),
+			regionName : sessionStorage.getItem("location"),
+			locationName: document.querySelector('.theaterPlace.selectedPlace').innerHTML
+		};
+		
+		console.log(scheduleUpdateDto);
+		console.log(JSON.stringify(scheduleUpdateDto));
+		// JSON.stringify(자바스크립트 오브젝트) => 리턴 json
+		// JSON.parse(제이슨 문자열) => 리턴 자바스크립트 오브젝트
+		
+		let response = await fetch("http://localhost:8080/mlist/schedule/"+id, { // 응답을 기다리기 위해 await 사용
+			method: 'POST',
+			body: JSON.stringify(scheduleUpdateDto),
+			headers: {
+				"Content-Type": "application/json; charset=utf-8"
+			}
+		});
+		
+		let parseResponse = await response.json(); // 나중에 스프링함수에서 리턴될 때 뭐가 리턴되는지 확인해보자!!
+		
+		// response.text()로 변경해보자
+		console.log(parseResponse)
+		
+		if(parseResponse.code == 1){
+			//alert("업데이트 성공");
+			let numbers = parseResponse.body
+			let array = numbers.split("-");
+			let movieId = parseInt(array[0]);
+			let locationId = parseInt(array[1]);
+			location.href="/mlist/schedule/"+movieId + "/" + locationId;
+		} else {
+			alert(parseResponse.msg);
+		}
+	}
+	
+	// 시간(reserveTimeBtn) 선택 시 함수
 		function onclick5(e) {
 		console.log(e.target);
 		if (e.target.classList[1] === "selectedTime") {
@@ -262,9 +316,14 @@
 				time[i].classList.remove("selectedTime");
 			}
 			event.target.classList.add("selectedTime");
-			let startingTime = document.querySelector('.reserveTimeWant.selectedTime').innerHTML;
-			console.log(startingTime)
+			let information = document.querySelector('.reserveTimeWant.selectedTime').innerHTML;
+			console.log(information)
+			let information2 = information.replace("  ", "");
+			let information3 = information.split("관");
+			let cinemaName = information3[0] + "관";
+			let startingTime = information3[1].trim();
 			sessionStorage.setItem("startingTime", startingTime);
+			sessionStorage.setItem("cinemaName", cinemaName);
 		}
 	}
 
@@ -329,10 +388,7 @@
 	        //button.append(spanDay);
 	        //button.append(i);
 
-	        reserveDay.append(button);
-			
-	        
-	    	
+	        reserveDay.append(button);    	
 	        //dayClickEvent(button);
 	    }
 	    	let dateBtn = $(".movieDateWrapper")
@@ -349,10 +405,11 @@
 	    			let rYear = document.querySelector('.reserveYear').innerHTML + "년";
 	    			let rMonth = document.querySelector('.reserveMonth').innerHTML + "월";
 	    			let rDay = document.querySelector('.movieDateWrapper.selectedBtn').innerHTML;
-	    			let rDate = rDay.slice(-1) +"일";
+	    			let rDate = rDay.slice(-2) +"일";
 	    			sessionStorage.setItem("year", rYear);
 	    			sessionStorage.setItem("month", rMonth);
 	    			sessionStorage.setItem("date", rDate);
+	    			
 	    		}
 	    	}
 	    	
