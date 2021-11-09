@@ -13,15 +13,20 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.greencinema.domain.user.User;
 import com.cos.greencinema.domain.user.UserRepository;
+import com.cos.greencinema.handler.ex.MyAsyncNotFoundException;
 import com.cos.greencinema.util.MyAlgorithm;
 import com.cos.greencinema.util.SHA;
 import com.cos.greencinema.util.Script;
+import com.cos.greencinema.web.dto.CMRespDto;
 import com.cos.greencinema.web.dto.JoinReqDto;
 import com.cos.greencinema.web.dto.LoginReqDto;
+import com.cos.greencinema.web.dto.UserUpdateDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,16 +39,36 @@ public class UserController {
 	private final HttpSession session;
 	
 	//상진 영역
+	
+	// ==== 로그아웃 ====
 	@GetMapping("/logout")
 	public String logout() {
 		session.invalidate();
 		return "redirect:/";
 	}
 	
+	// ==== 회원정보 ====
 	@GetMapping("/user/{id}")
 	public String userInfo(@PathVariable int id) {
 		return "user/updateForm";
 	}
+	
+	// ==== 회원수정 ====
+		@PutMapping("/user/{id}")
+		public @ResponseBody CMRespDto<String> update(@PathVariable int id,
+				@Valid @RequestBody UserUpdateDto dto, BindingResult bindingResult) {
+			
+			// 유효성
+			if(bindingResult.hasErrors()) {
+				Map<String, String> errorMap = new HashMap<>();
+				for (FieldError error : bindingResult.getFieldErrors()) {
+					errorMap.put(error.getField(), error.getDefaultMessage());
+				}
+				throw new MyAsyncNotFoundException(errorMap.toString());
+			}
+			
+			return new CMRespDto<>(1, "성공", null);
+		}
 	
 	//민수 영역
 	
@@ -55,6 +80,7 @@ public class UserController {
 	@PostMapping("/join")
 	public @ResponseBody String Join(@Valid JoinReqDto dto, BindingResult bindingResult, Model model) {
 		
+		// 유효성
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
 			for(FieldError error : bindingResult.getFieldErrors()) {
@@ -78,7 +104,7 @@ public class UserController {
 	@PostMapping("/login")
 	 public @ResponseBody String Login(@Valid LoginReqDto dto, BindingResult bindingResult, Model model) {
 		
-		
+		// 유효성
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
 			for(FieldError error : bindingResult.getFieldErrors()) {

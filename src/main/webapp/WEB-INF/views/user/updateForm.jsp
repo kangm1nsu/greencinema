@@ -41,4 +41,17 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 <script src="assets/js/script.js"></script>
 
+<!--  상진 - 회원수정  -->
+<script>
+	function update(event, id) {
+		event.preventDefault();
+		
+		let userUpdateDto = {
+				email: document.querySelector("#email").value
+		};
+		
+			let response = fetch("http://localhost:8080/user/{id}")
+	}
+</script>
+
 <%@ include file="../layout/footer.jsp"%>

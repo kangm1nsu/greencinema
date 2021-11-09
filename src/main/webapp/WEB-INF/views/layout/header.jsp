@@ -39,10 +39,14 @@
 					</c:when>
 					
 					<c:otherwise>
-						<a href="/user/${sessionScope.principal.id}">회원정보</a>
+						<a href="/test/user/myRes">예매 내역</a>
+					
+						<a href="/user/${sessionScope.principal.id}">회원 정보</a>
 						
 						<a href="/logout">로그아웃</a>
 					</c:otherwise>
+					
+					
 			</c:choose>
 			</div>
 			
