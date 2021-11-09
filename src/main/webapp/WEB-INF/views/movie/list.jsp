@@ -25,7 +25,7 @@
 
 
 	<h2>전체 영화</h2>
-				<form class="form-inline d-flex justify-content-end" >
+				<form class="form-inline d-flex justify-content-end" method="GET" >
 		 
 		  <div class="col-auto">
 		    

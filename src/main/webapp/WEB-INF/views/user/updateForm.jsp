@@ -9,20 +9,20 @@
 			<b>회원정보수정</b>
 			<div class="form-group">
 				<input type="text" class="form-control item" id="username"
-					placeholder="아이디">
+					placeholder="아이디" value="${sessionScope.principal.username }">
 			</div>
 			
 			<div class="form-group">
 				<input type="text" class="form-control item" id="email"
-					placeholder="이메일">
+					placeholder="이메일" value="${sessionScope.principal.email }">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item" id="phone-number"
-					placeholder="연락처">
+					placeholder="연락처" value="${sessionScope.principal.tel }">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item" id="birth-date"
-					placeholder="생년월일">
+					placeholder="생년월일" value="${sessionScope.principal.birthDate }">
 			</div>
 			<div class="form-group" id="submit-btn">
 				<button type="button" class="btn btn-block create-account">수정하기</button>

@@ -31,9 +31,21 @@
 					CINEMA</a>
 			</h1>
 			<div class="sign">
-					<a href="/loginForm">로그인</a>
-					<a href="/joinForm">회원가입</a>
+			<c:choose>
+					<c:when test="${empty sessionScope.principal}">
+							<a href="/loginForm">로그인</a>
+							
+							<a href="/joinForm">회원가입</a>
+					</c:when>
+					
+					<c:otherwise>
+						<a href="/user/${sessionScope.principal.id}">회원정보</a>
+						
+						<a href="/logout">로그아웃</a>
+					</c:otherwise>
+			</c:choose>
 			</div>
+			
 		</div>
 		<div id="nav" class="nav_bar">
 			
