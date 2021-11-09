@@ -18,4 +18,10 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String movieTitle;
+	private String rank;
+	private String img;
+	private String movieAge;
+	private String movieOpenDate;
+	private String movieRate;
+	private String like;
 }
