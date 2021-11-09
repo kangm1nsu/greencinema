@@ -5,6 +5,14 @@ a {
 	color: black;
 }
 
+.beforeLogin  {
+	margin: 5px;
+}
+
+.afterLogin {
+	margin: 5px;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -40,9 +48,9 @@ a {
 }
 
 .sign {
-	width: 100px;
+	width: 200px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 .logo{
