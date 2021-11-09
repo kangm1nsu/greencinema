@@ -13,11 +13,11 @@
 		</div>
 		<div class="form-group">
 			<input class="form-control" type="text" name="username"
-				placeholder="ID">
+				placeholder="ID" required="required">
 		</div>
 		<div class="form-group">
 			<input class="form-control" type="password" name="password"
-				placeholder="Password">
+				placeholder="Password" required="required">
 		</div>
 		<div class="form-group">
 			<button class="btn btn-primary btn-block" type="submit">Log

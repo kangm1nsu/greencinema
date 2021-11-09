@@ -9,7 +9,11 @@
 			<b>회원정보수정</b>
 			<div class="form-group">
 				<input type="text" class="form-control item" id="username"
-					placeholder="아이디" value="${sessionScope.principal.username }">
+					placeholder="아이디" value="${sessionScope.principal.username }" readonly>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control item" id="password"
+					placeholder="비밀번호" value="${sessionScope.principal.password }">
 			</div>
 			
 			<div class="form-group">
@@ -22,7 +26,7 @@
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item" id="birth-date"
-					placeholder="생년월일" value="${sessionScope.principal.birthDate }">
+					placeholder="생년월일" value="${sessionScope.principal.birthDate }" readonly>
 			</div>
 			<div class="form-group" id="submit-btn">
 				<button type="button" class="btn btn-block create-account">수정하기</button>

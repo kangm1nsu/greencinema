@@ -1,18 +1,25 @@
 package com.cos.greencinema.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.greencinema.domain.user.User;
 import com.cos.greencinema.domain.user.UserRepository;
 import com.cos.greencinema.util.MyAlgorithm;
 import com.cos.greencinema.util.SHA;
+import com.cos.greencinema.util.Script;
 import com.cos.greencinema.web.dto.JoinReqDto;
 import com.cos.greencinema.web.dto.LoginReqDto;
 
@@ -46,12 +53,25 @@ public class UserController {
 	
 	// 1. 회원 가입
 	@PostMapping("/join")
-	public String Join(JoinReqDto dto) {
+	public @ResponseBody String Join(@Valid JoinReqDto dto, BindingResult bindingResult, Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			Map<String, String> errorMap = new HashMap<>();
+			for(FieldError error : bindingResult.getFieldErrors()) {
+				errorMap.put(error.getField(), error.getDefaultMessage());
+			}
+			model.addAttribute("errorMap", errorMap);
+			
+			return Script.back(errorMap.toString());
+			
+		}
+		
 		System.out.println(dto.getUsername());
 		String encpassword = SHA.encrypt(dto.getPassword(), MyAlgorithm.SHA256);
 		dto.setPassword(encpassword);
+		
 		userRepository.save(dto.toEntity());
-		return "user/loginForm";
+		return Script.href("test/user/loginForm");
 	}
 	
 	// 2. 로그인
