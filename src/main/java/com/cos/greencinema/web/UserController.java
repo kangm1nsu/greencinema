@@ -76,13 +76,28 @@ public class UserController {
 	
 	// 2. 로그인
 	@PostMapping("/login")
-	public  String Login(LoginReqDto dto) {		
-		// 일반 회원 로그인
+	 public @ResponseBody String Login(@Valid LoginReqDto dto, BindingResult bindingResult, Model model) {
+		
+		
+		if(bindingResult.hasErrors()) {
+			Map<String, String> errorMap = new HashMap<>();
+			for(FieldError error : bindingResult.getFieldErrors()) {
+				errorMap.put(error.getField(), error.getDefaultMessage());
+				
+			}
+			model.addAttribute("errorMap", errorMap);
+			
+			return Script.back("아이디 또는 비밀번호가 잘못 입력 되었습니다.");
+			
+			
+		}
 		User principal = userRepository.mLogin(dto.getUsername(), SHA.encrypt(dto.getPassword(), MyAlgorithm.SHA256));
+		// 일반 회원 로그인
 		if ( principal.getAdminNum() == 0 ) {
 			System.out.println(principal.getAdminNum());
-			session.setAttribute("principal", principal); // [상진] - 세션 추가
-			return "redirect:/";
+			
+			session.setAttribute("principal", principal);
+			return Script.href("/", "로그인 성공");
 		} else {
 			return "/admin/movieManage";
 		}
@@ -92,6 +107,7 @@ public class UserController {
 	public String userjoinForm() {
 		return "user/joinForm";
 	}
+
 	@GetMapping("/loginForm")
 	public String userloinForm() {
 		return "user/loginForm";
