@@ -2,7 +2,7 @@
 
 /* content */
 
-.select-wrapper {
+.selectWrapper {
     width: 900px;
     background-color: gray;
     margin-top: 0 auto;
@@ -10,7 +10,7 @@
     border-right: 1px solid #dddddd;
 }
 
-.select-title {
+.selectTitle {
     background-color: #444444;
     color: #dddddd;
     font-size: 20px;
@@ -18,116 +18,116 @@
     padding: 10px;
 }
 
-.select-seat-container {
+.selectSeatContainer {
     display: flex;
     /* align-items: center; */
     border-bottom: 2px solid #dddddd;
 }
 
 
-.select-seat-number-container {
+.selectSeatNumberContainer {
     flex-grow: 1;
     border-right: 1px solid #dddddd;
     display: flex;
 }
 
-.select-seat-number-wrapper {
+.selectSeatNumberWrapper {
     padding: 15px 0 20px 20px;
     flex-grow: 1;
 }
 
-.select-time-information-wrapper{
+.selectTimeInformationWrapper{
     padding: 15px 0 20px 20px;
     flex-grow: 1;
 }
 
-.select-seat-information {
+.selectSeatInformation {
     flex-grow: 1;
     padding: 15px 0 20px 20px;
 }
 
-.select-seat {
+.selectSeat {
     display: flex;
     font-size: 16px;
 }
 
-.select-seat:not(:first-child) {
+.selectSeat:not(:first-child) {
     margin-top: 12px;
 }
 
-.select-seat-age {
+.selectSeatAge {
     width: 40px;
 }
 
-.select-seat-number {
+.selectSeatNumber {
     margin-left: 15px;
 }
 
-.reserve-number-wrapper {
+.reserveNumberWrapper {
     flex-grow: 1;
     padding-top: 15px;
     border-left: 1px solid #DDDDDD;
     text-align: center;
 }
 
-.reserve-number {
+.reserveNumber {
     margin-top: 20px;
     font-size: 34px;
     font-weight: bold;
 }
 
-.selected-movie {
+.selectedMovie {
 	font-size: 20px;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.select-seat-information-wrapper {
+.selectSeatInformationWrapper {
     display: flex;
 }
 
-.select-theater-place {
+.selectTheaterPlace {
     font-size: 20px;
 }
 
-.select-theater-place:not(:last-child) {
+.selectTheaterPlace:not(:last-child) {
     width: 80px;
     border-right: 1px solid #dddddd;
 }
 
-.select-theater-place:last-child {
+.selectTheaterPlace:last-child {
     width: 170px;
     /* border-right: 1px solid #dddddd; */
 }
 
-.select-theater-place:not(:first-child) {
+.selectTheaterPlace:not(:first-child) {
     margin-left: 14px;
 }
 
-.select-theater-date {
+.selectTheaterDate {
     /*  font-size: 18px;
     margin-top: 8px;
     font-weight: bold; */
     display: flex;
 }
 
-.select-theater-date>div {
+.selectTheaterDate>div {
     font-size: 18px;
     margin-top: 15px;
     font-weight: bold;
 }
 
-.theater-time {
+.theaterTime {
     margin-left: 5px;
 }
 
-.remain-seats {
+.remainSeats {
     margin-left: 3px;
     color: white;
     font-weight: bold;
 }
 
-.selected-seats-wrapper {
+.selectedSeatsWrapper {
     margin-top: 5px;
 }
 
@@ -136,30 +136,30 @@
     font-weight: bold;
 }
 
-.selected-seats-title {
+.selectedSeatsTitle {
     color: white;
     font-size: 18px;
     font-weight: bold;
 }
 
-.ticket-price-wrapper{
+.ticketPriceWrapper{
 	margin-top: 13px;
 	display: flex;
 	align-items: center;
 }
-.ticket-price-wrapper>div{	
+.ticketPriceWrapper>div{	
 	font-weight: bold;
 }
-.ticket-price-title{
+.ticketPriceTitle{
 	font-size: 18px;
 }
 
-.ticket-price {
+.ticketPrice {
 	margin-left: 47px;
 	font-size:20px;
 }
 
-.reserve-button {
+.reserveBtn {
     margin-top: 14px;
     display: flex;
     align-items: center;
@@ -171,18 +171,18 @@
     border: none;
 }
 
-.reserve-button img {
+.reserveBtn img {
     margin-left: 10px;
     width: 60px;
 }
 
-.seat-container {
+.seatContainer {
     margin-top: 20px;
     display: flex;
     justify-content: center;
 }
 
-.screen-view {
+.screenView {
     width: 140px;
     color: #777777;
     padding-top: 30px;
@@ -193,7 +193,7 @@
     letter-spacing: 4px;
 }
 
-.seat-wrapper {
+.seatWrapper {
     background-color: #222222;
     width: 700px;
     height: 460px;

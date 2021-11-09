@@ -35,18 +35,29 @@
 				</a>
 			</h1>
 			<div class="sign">
-				<c:choose>
-					<c:when test="${empty sessionScope.principal.id}">
-						<a href="/loginForm" class="beforeLogin">로그인</a>
-						<a href="/joinForm" class="beforeLogin">회원가입</a>
+
+			<c:choose>
+					<c:when test="${empty sessionScope.principal}">
+							<a href="/loginForm">로그인</a>
+							
+							<a href="/joinForm">회원가입</a>
 					</c:when>
+					
 					<c:otherwise>
-						<a href="#" class="afterLogin">예매 내역</a>
-						<a href="#" class="afterLogin">내 정보</a>
-						<a href="/logout" class="afterLogin">로그아웃</a>
+						<a href="/test/user/myRes">예매 내역</a>
+					
+						<a href="/user/${sessionScope.principal.id}">회원 정보</a>
+						
+						<a href="/logout">로그아웃</a>
 					</c:otherwise>
-				</c:choose>
+					
+					
+			</c:choose>
+
+				
+
 			</div>
+			
 		</div>
 		<div id="nav" class="nav_bar">
 

@@ -18,11 +18,11 @@ body {
   margin: 0;
 }
 
-.movie-container {
+.movieContainer {
   margin: 20px 0;
 }
 
-.movie-container select {
+.movieContainer select {
   background-color: #fff;
   border: 0;
   border-radius: 5px;
@@ -44,8 +44,8 @@ body {
   height: 30px;
   width: 32px;
   margin: 3px;
-  font-size: 14px;
-  text-align:center;
+  font-size: 15px;
+  text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -120,6 +120,7 @@ body {
 .row {
   display: flex;
     justify-content: center;
+    --bs-gutter-x: 0;
 }
 
 .screen {
@@ -138,9 +139,9 @@ body {
 	background-color: #242333;
 	display: flex;
 	justify-content: center;
+	text-align: center;
 }
 
 .seatback {
 	width: 480px;
-	justify-content: center;
 }

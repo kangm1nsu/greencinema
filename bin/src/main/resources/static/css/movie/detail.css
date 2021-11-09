@@ -17,7 +17,7 @@
 .m_photo {
 	width: 230px;
 	height: 331px;
-	margin: 5px;
+	margin: 40px;
 }
 
 .btn_res {
@@ -37,15 +37,19 @@
 	border: 1px solid #B182FF;
 	margin: 1px;
 	border-radius: 10px;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .title {
 	width: 400px;
+	color:white;
 }
 
 .desc{
-	margin-left: 15px;
-	color:white;
+	margin-left: 50px;
+	margin-top: 15px;
 }
 /* 부트스트랩 css */
 .bdge {
@@ -71,6 +75,47 @@
 	color: blue
 }
 
+.m_margin_right{
+	margin-right: 10px;
+}
+
 .hit-voting {
 	cursor: pointer
+}
+.bottom_box{
+	margin-left: 50px;
+	
+}
+
+.like_box{
+	border: 2px solid white;
+	border-radius:10px; 
+	padding: 5px;
+	color:white;
+	width: 65px;
+	text-align: center;
+	margin:10px;
+	box-sizing: content-box;
+	margin-left: 0;
+}
+
+.like_box:hover {
+	background-color: white;
+	color:black;
+	cursor: pointer;
+}
+
+.delete_btn button{
+	width: 100px;
+	height: 40px;
+	color: #fff;
+	margin:3px;
+	background:#004fff;
+	border:none;
+	border-radius: 15px;
+	box-shadow: 0 4px 16px rgba(0,79,255,0.3);
+}
+.delete_btn{
+	width: 100px;
+	margin : auto 0;
 }
