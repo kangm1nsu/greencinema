@@ -1,5 +1,6 @@
 package com.cos.greencinema.domain.Schedule;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,8 +33,12 @@ public class Schedule {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Cinema cinema;
 	
+	@Column(nullable = false, length = 50)
 	private String startingYear;
+	@Column(nullable = false, length = 50)
 	private String startingMonth;
+	@Column(nullable = false, length = 50)
 	private String startingDate;
+	@Column(nullable = false, length = 50)
 	private String startingTime;
 }

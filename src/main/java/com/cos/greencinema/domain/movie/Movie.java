@@ -1,5 +1,6 @@
 package com.cos.greencinema.domain.movie;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Movie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false, length = 50)
 	private String movieTitle;
 	private String rank;
 	private String img;

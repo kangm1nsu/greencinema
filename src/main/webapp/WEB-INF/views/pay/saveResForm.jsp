@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	민환
+<h1>아래의 결제완료 버튼을 클릭하여야 결제가 완료됩니다</h1>
+	<button type="submit">결제완료</button>
 </body>
 </html>
