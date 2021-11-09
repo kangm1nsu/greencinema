@@ -2,6 +2,10 @@ package com.cos.greencinema.test;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cos.greencinema.web.dto.CMRespDto;
 
 
 @Controller
@@ -29,6 +33,14 @@ public class PageControllerTest {
 	}
 
 	//상진 영역 ----------------
+	
+	// 영화 좋아요 누르기
+	@PostMapping("/test/movie/list")
+	public @ResponseBody CMRespDto<?> like() {
+	
+		
+		return new CMRespDto<>(1, "성공", null);
+	}
 	
 	@GetMapping("test/user/joinForm")
 	public String userjoinForm() {
