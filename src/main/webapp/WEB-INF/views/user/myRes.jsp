@@ -15,15 +15,15 @@
 				<hr class="card_hr">
 				<div class="movie_name">베놈</div>
 				<hr class="card_hr">
-				<div>Green1관/2장</div>
-				<div>C4,C6</div>
-				<div>2020.2.9(일) 15:34</div>
+				<div>부산 서면 GC 1관</div>
+				<div>C4</div>
+				<div>2021.11.10(수) 17:34</div>
 				<br />
 				<p>결제일</p>
-				<div>2020.2.7(일) 12:20</div>
+				<div>2021.11.10(수) 18:20</div>
 				<br />
 				<p>결제비용</p>
-				<div>22000원</div>
+				<div>10000원</div>
 			</div>
 			<!-- 리스트끝 -->
 
@@ -32,63 +32,15 @@
 				<hr class="card_hr">
 				<div class="movie_name">베놈</div>
 				<hr class="card_hr">
-				<div>Green1관/2장</div>
-				<div>C4,C6</div>
-				<div>2020.2.9(일) 15:34</div>
+				<div>부산 서면 GC 1관</div>
+				<div>C6</div>
+				<div>2021.11.10(수) 17:34</div>
 				<br />
 				<p>결제일</p>
-				<div>2020.2.7(일) 12:20</div>
+				<div>2021.11.10(수) 18:20</div>
 				<br />
 				<p>결제비용</p>
-				<div>22000원</div>
-			</div>
-			<!-- 리스트끝 -->
-			<div class="card">
-				<p class="grade">15세</p>
-				<hr class="card_hr">
-				<div class="movie_name">베놈</div>
-				<hr class="card_hr">
-				<div>Green1관/2장</div>
-				<div>C4,C6</div>
-				<div>2020.2.9(일) 15:34</div>
-				<br />
-				<p>결제일</p>
-				<div>2020.2.7(일) 12:20</div>
-				<br />
-				<p>결제비용</p>
-				<div>22000원</div>
-			</div>
-			<!-- 리스트끝 -->
-			<div class="card">
-				<p class="grade">15세</p>
-				<hr class="card_hr">
-				<div class="movie_name">베놈</div>
-				<hr class="card_hr">
-				<div>Green1관/2장</div>
-				<div>C4,C6</div>
-				<div>2020.2.9(일) 15:34</div>
-				<br />
-				<p>결제일</p>
-				<div>2020.2.7(일) 12:20</div>
-				<br />
-				<p>결제비용</p>
-				<div>22000원</div>
-			</div>
-			<!-- 리스트끝 -->
-			<div class="card">
-				<p class="grade">15세</p>
-				<hr class="card_hr">
-				<div class="movie_name">베놈</div>
-				<hr class="card_hr">
-				<div>Green1관/2장</div>
-				<div>C4,C6</div>
-				<div>2020.2.9(일) 15:34</div>
-				<br />
-				<p>결제일</p>
-				<div>2020.2.7(일) 12:20</div>
-				<br />
-				<p>결제비용</p>
-				<div>22000원</div>
+				<div>10000원</div>
 			</div>
 			<!-- 리스트끝 -->
 		</div>
