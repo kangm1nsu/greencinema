@@ -109,11 +109,7 @@ public class UserController {
 			return Script.back(errorMap.toString());
 			
 		}
-		// 인증
-					User principal = (User) session.getAttribute("principal");
-					if (principal == null) {
-						throw new MyAsyncNotFoundException("잘못된 접근 입니다.");
-					}
+		
 		
 		System.out.println(dto.getUsername());
 		String encpassword = SHA.encrypt(dto.getPassword(), MyAlgorithm.SHA256);
@@ -137,9 +133,11 @@ public class UserController {
 			model.addAttribute("errorMap", errorMap);
 			
 			return Script.back("아이디 또는 비밀번호가 잘못 입력 되었습니다.");
-			
-			
+
 		}
+		
+		
+		
 		User principal = userRepository.mLogin(dto.getUsername(), SHA.encrypt(dto.getPassword(), MyAlgorithm.SHA256));
 		// 일반 회원 로그인
 		if ( principal.getAdminNum() == 0 ) {
