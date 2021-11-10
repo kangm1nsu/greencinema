@@ -21,9 +21,11 @@
 			</div>
 			<div class="movieListWrapper">
 				<div class="movieList">
-					<div class="movie">듄</div>
-					<div class="movie">모르겠다 에효</div>
-					<div class="movie">베놈</div>
+					<c:forEach var="movie"  items="${movieEntity}">
+					<form onsubmit="update1(event, ${movie.id})">
+						<button type="submit" class="movie">${movie.movieTitle}</button>
+					</form>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -34,10 +36,31 @@
 			<div class="theaterContainer">
 				<div class="theaterWrapper">
 					<div class="theaterLocationWrapper">
-						<button class="theaterLocation">부산(1)</button>
+					<c:choose>
+						<c:when test="${empty regionEntity}">
+						<button class="theaterLocation">예매할 영화를 선택하세요</button>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="region"  items="${regionEntity}" >
+							<form onsubmit="update2(event, ${region.id})">
+								<button type="submit" class="theaterLocation">${region.regionName}</button>
+							</form>
+							</c:forEach>				
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="theaterPlaceWrapper">
-						<button class="theaterPlace">서면</button>
+					<c:choose>
+						<c:when test="${empty regionEntity}">
+						</c:when>
+						<c:otherwise>
+						<c:forEach var="location"  items="${locationEntity}">
+						<form onsubmit="update3(event, ${location.id})">
+							<button type="submit" class="theaterPlace">${location.locationName}</button>
+						</form>
+						</c:forEach>				
+						</c:otherwise>
+					</c:choose>
 					</div>
 				</div>
 			</div>
@@ -58,30 +81,33 @@
 		<div class="timePart">
 			<div class="timeTitle">시간</div>
 			<div class="reserveTime">
-				<div class="reserveWhere">4관(Green) 4층(총 100석)</div>
+				<div class="reserveWhere">현재 상영 중인 영화관</div>
 				<div class="reserveTimeWrapper">
-					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">12:20</span>
+				<c:choose>
+						<c:when test="${empty timeEntity}">
+							<div class="reserveTime">상영시간표가 존재하지 않습니다</div>
+						</c:when>
+						<c:otherwise>
+				<c:forEach var="time"  items="${timeEntity}" varStatus="status">
+					<button class="reserveTimeBtn" type="submit">
+						<span class="reserveTimeWant">${time.substring(0,3)} ${time.substring(3)}</span>
 					</button>
-					<span class="reserveTimeRemain">100석</span>
-					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">14:40</span>
-					</button>
-					<span class="reserveTimeRemain">100석</span>
-					<button class="reserveTimeBtn">
-						<span class="reserveTimeWant">17:00</span>
-					</button>
-					<span class="reserveTimeRemain">100석</span>
+				</c:forEach>		
+						</c:otherwise>
+					</c:choose>
+		
 					<!--  상영시간 끝 -->
 				</div>
 			</div>
 			<div class="reserveOk">
+			<c:if test="${not empty timeEntity}">
 				<form action="/res" method="post">
 					<button class="reserveBtn" type="submit">
 						<span class="right"> → </span> <br> <span class="letter">
 							좌석선택 </span>
 					</button>
 				</form>
+				</c:if>
 			</div>
 		</div>
 
@@ -91,7 +117,8 @@
 	let movie = $(".movie");
 	let loc = $(".theaterLocation");
 	let place = $(".theaterPlace");
-
+	let time = $(".reserveTimeWant")
+	
 	// 영화 제목 클릭 시 작동 함수
 	function onclick(e) {
 		console.log(e.target);
@@ -107,14 +134,52 @@
 			sessionStorage.setItem("movie", movieName);
 		}
 	}
-
+		
 	// 영화제목 클릭 시 onclick 함수 실행 ( 클래스명 바꿈 )
 	function init() {
 		for (var i = 0; i < movie.length; i++) {
 			movie[i].addEventListener("click", onclick);
 		}
 	}
-
+	
+	// 영화 제목 클릭 - 비동기 요청
+	async function update1(event, id) {
+		// console.log(event)
+		event.preventDefault();
+		// 주소: Put board/3
+		// Update board SET title = ?, content = ?, WHERE id = ?
+			movieTitle = document.querySelector('.movie.selected').innerHTML
+			console.log(movieTitle);
+		let regionUpdateDto = {
+			movieTitle: movieTitle
+		};
+		
+		console.log(regionUpdateDto);
+		console.log(JSON.stringify(regionUpdateDto));
+		// JSON.stringify(자바스크립트 오브젝트) => 리턴 json
+		// JSON.parse(제이슨 문자열) => 리턴 자바스크립트 오브젝트
+		
+		let response = await fetch("http://localhost:8080/mlist/region/"+id, { // 응답을 기다리기 위해 await 사용
+			method: 'POST',
+			body: JSON.stringify(regionUpdateDto),
+			headers: {
+				"Content-Type": "application/json; charset=utf-8"
+			}
+		});
+		
+		let parseResponse = await response.json(); // 나중에 스프링함수에서 리턴될 때 뭐가 리턴되는지 확인해보자!!
+		
+		// response.text()로 변경해보자
+		console.log(parseResponse)
+		
+		if(parseResponse.code == 1){
+			//alert("업데이트 성공");
+			location.href="/mlist/region/"+id
+		} else {
+			alert(parseResponse.msg);
+		}
+	}
+	
 	// 극장 지역 선택(loc) 시 함수
 	function onclick2(e) {
 		console.log(e.target);
@@ -123,8 +188,14 @@
 		} else {
 			for (var i = 0; i < loc.length; i++) {
 				loc[i].classList.remove("selectedLocation");
-			}
+		}
 			event.target.classList.add("selectedLocation");
+			let lName = document.querySelector('.theaterLocation.selectedLocation').innerHTML;
+			let locationName = lName.split('(')[0];
+			console.log(locationName)
+			sessionStorage.setItem("location", locationName);
+			
+			
 		}
 	}
 
@@ -134,7 +205,42 @@
 			loc[i].addEventListener("click", onclick2);
 		}
 	}
-
+	
+	// 극장 지역 클릭 - 비동기 요청 
+	async function update2(event, id) {
+		// console.log(event)
+		event.preventDefault();
+		// 주소: Put board/3
+		// Update board SET title = ?, content = ?, WHERE id = ?
+		let locationUpdateDto = {
+			regionName: document.querySelector('.theaterLocation.selectedLocation').innerHTML
+		};
+		
+		console.log(locationUpdateDto);
+		console.log(JSON.stringify(locationUpdateDto));
+		// JSON.stringify(자바스크립트 오브젝트) => 리턴 json
+		// JSON.parse(제이슨 문자열) => 리턴 자바스크립트 오브젝트
+		
+		let response = await fetch("http://localhost:8080/mlist/location/"+id, { // 응답을 기다리기 위해 await 사용
+			method: 'POST',
+			body: JSON.stringify(locationUpdateDto),
+			headers: {
+				"Content-Type": "application/json; charset=utf-8"
+			}
+		});
+		
+		let parseResponse = await response.json(); // 나중에 스프링함수에서 리턴될 때 뭐가 리턴되는지 확인해보자!!
+		
+		// response.text()로 변경해보자
+		console.log(parseResponse)
+		
+		if(parseResponse.code == 1){
+			// alert("업데이트 성공");
+			location.href="/mlist/location/"+id
+		} else {
+			alert(parseResponse.msg);
+		}
+	}	
 	// 극장 장소 선택(place) 시 함수
 	function onclick3(e) {
 		console.log(e.target);
@@ -145,6 +251,9 @@
 				place[i].classList.remove("selectedPlace");
 			}
 			event.target.classList.add("selectedPlace");
+			let placeName = document.querySelector('.theaterPlace.selectedPlace').innerHTML;
+			console.log(placeName)
+			sessionStorage.setItem("place", placeName);
 		}
 	}
 
@@ -154,11 +263,81 @@
 			place[i].addEventListener("click", onclick3);
 		}
 	}
+	
+	// 극장 장소 클릭 - 비동기 처리
+	async function update3(event, id) {
+		// console.log(event)
+		event.preventDefault();
+		// 주소: Put board/3
+		// Update board SET title = ?, content = ?, WHERE id = ?
+		let scheduleUpdateDto = {
+			movieTitle : sessionStorage.getItem("movie"),
+			regionName : sessionStorage.getItem("location"),
+			locationName: document.querySelector('.theaterPlace.selectedPlace').innerHTML
+		};
+		
+		console.log(scheduleUpdateDto);
+		console.log(JSON.stringify(scheduleUpdateDto));
+		// JSON.stringify(자바스크립트 오브젝트) => 리턴 json
+		// JSON.parse(제이슨 문자열) => 리턴 자바스크립트 오브젝트
+		
+		let response = await fetch("http://localhost:8080/mlist/schedule/"+id, { // 응답을 기다리기 위해 await 사용
+			method: 'POST',
+			body: JSON.stringify(scheduleUpdateDto),
+			headers: {
+				"Content-Type": "application/json; charset=utf-8"
+			}
+		});
+		
+		let parseResponse = await response.json(); // 나중에 스프링함수에서 리턴될 때 뭐가 리턴되는지 확인해보자!!
+		
+		// response.text()로 변경해보자
+		console.log(parseResponse)
+		
+		if(parseResponse.code == 1){
+			//alert("업데이트 성공");
+			let numbers = parseResponse.body
+			let array = numbers.split("-");
+			let movieId = parseInt(array[0]);
+			let locationId = parseInt(array[1]);
+			location.href="/mlist/schedule/"+movieId + "/" + locationId;
+		} else {
+			alert(parseResponse.msg);
+		}
+	}
+	
+	// 시간(reserveTimeBtn) 선택 시 함수
+		function onclick5(e) {
+		console.log(e.target);
+		if (e.target.classList[1] === "selectedTime") {
+			e.target.classList.remove("selectedTime");
+		} else {
+			for (var i = 0; i < time.length; i++) {
+				time[i].classList.remove("selectedTime");
+			}
+			event.target.classList.add("selectedTime");
+			let information = document.querySelector('.reserveTimeWant.selectedTime').innerHTML;
+			console.log(information)
+			let information2 = information.replace("  ", "");
+			let information3 = information.split("관");
+			let cinemaName = information3[0] + "관";
+			let startingTime = information3[1].trim();
+			sessionStorage.setItem("startingTime", startingTime);
+			sessionStorage.setItem("cinemaName", cinemaName);
+		}
+	}
 
+	// 극장 장소 클릭 시 onclick 함수 실행 ( 클래스명 바꿈 )
+	function init5() {
+		for (var i = 0; i < time.length; i++) {
+			time[i].addEventListener("click", onclick5);
+		}
+	}
+	
 	init();
 	init2();
 	init3();
-	
+	init5();
 </script>
 
 <!--  날짜 -->
@@ -202,17 +381,14 @@
 	        //button.append(spanWeekOfDay);
 	        //날짜 넣기
 	        spanDay.innerHTML = i;
-	        console.log(i)
+	        //console.log(i)
 	        let moviedDate = dayOfWeek + " " + i
 	        
 	        button.append(moviedDate)
 	        //button.append(spanDay);
 	        //button.append(i);
 
-	        reserveDay.append(button);
-			
-	        
-	    	
+	        reserveDay.append(button);    	
 	        //dayClickEvent(button);
 	    }
 	    	let dateBtn = $(".movieDateWrapper")
@@ -226,6 +402,14 @@
 	    				dateBtn[i].classList.remove("selectedBtn");
 	    			}
 	    			event.target.classList.add("selectedBtn");
+	    			let rYear = document.querySelector('.reserveYear').innerHTML + "년";
+	    			let rMonth = document.querySelector('.reserveMonth').innerHTML + "월";
+	    			let rDay = document.querySelector('.movieDateWrapper.selectedBtn').innerHTML;
+	    			let rDate = rDay.slice(-2) +"일";
+	    			sessionStorage.setItem("year", rYear);
+	    			sessionStorage.setItem("month", rMonth);
+	    			sessionStorage.setItem("date", rDate);
+	    			
 	    		}
 	    	}
 	    	
@@ -237,6 +421,7 @@
 	    	}
 	    	
 	    	init4();
+	    		
 	}
 	
 	insertDate();

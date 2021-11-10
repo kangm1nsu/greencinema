@@ -13,36 +13,64 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-  
-<link rel="stylesheet" href="/css/layout/header.css" />
 <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-  />
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="/css/layout/header.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <body>
 	<div id="header_section" class="header">
 		<div class="gnb">
-			<div><a href="#">Facebook</a></div>
-			
+			<div>
+				<a href="#">Facebook</a>
+			</div>
+
 			<h1 class="logo">
-				<a href="/test/layout/main"> <img alt="logo" src="/img/logo_black.png"> GREEN
-					CINEMA</a>
+				<a href="/test/layout/main"> <img alt="logo"
+					src="/img/logo_black.png"> GREEN CINEMA
+				</a>
 			</h1>
 			<div class="sign">
-					<a href="/loginForm">로그인</a>
-					<a href="/joinForm">회원가입</a>
+
+			<c:choose>
+					<c:when test="${empty sessionScope.principal}">
+							<a href="/loginForm">로그인</a>
+							
+							<a href="/joinForm">회원가입</a>
+					</c:when>
+					
+					<c:otherwise>
+						<a href="/test/user/myRes">예매 내역</a>
+					
+						<a href="/user/${sessionScope.principal.id}">회원 정보</a>
+						
+						<a href="/logout">로그아웃</a>
+					</c:otherwise>
+					
+					
+			</c:choose>
+
+				
+
 			</div>
+			
 		</div>
 		<div id="nav" class="nav_bar">
-			
-				<div><a
-					href="/test/res/reserve">예매</a></div>
-					<div>ㅣ</div>
-				<div><a
-					href="/test/movie/list">영화</a></div>
-					<div>ㅣ</div>
-				<div><a href="/test/store/list">스토어</a></div>
+
+			<div>
+				<a href="/mlist">예매</a>
+			</div>
+			<div>ㅣ</div>
+			<div>
+				<a href="/test/movie/list">영화</a>
+			</div>
+			<div>ㅣ</div>
+			<div>
+				<a href="/test/store/list">스토어</a>
+			</div>
 		</div>
 	</div>

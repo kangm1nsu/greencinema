@@ -91,7 +91,7 @@
 }
 
 .selectTheaterPlace:not(:last-child) {
-    width: 80px;
+    width: 130px;
     border-right: 1px solid #dddddd;
 }
 

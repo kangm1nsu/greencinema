@@ -24,7 +24,7 @@
 					placeholder="연락처">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control item" id="birthDate" name="birthDate"
+				<input type="date" class="form-control item" id="birthDate" name="birthDate"
 					placeholder="생년월일">
 			</div>
 			<div class="form-group">

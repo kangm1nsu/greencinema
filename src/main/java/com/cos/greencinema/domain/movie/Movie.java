@@ -27,6 +27,6 @@ public class Movie {
 	private String movieAge;
 	private String movieOpenDate;
 	private String movieRate;
-	private String like;
+	private String movieLike;
 	
 }

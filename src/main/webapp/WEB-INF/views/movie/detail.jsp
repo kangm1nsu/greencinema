@@ -7,15 +7,15 @@
 <div class="wrap">
 	<div class="detail">
 		<div class="title">
-			<div class="m_name">베놈 2: 렛 데어 비 카니지</div>
+			<div class="m_name">${movieEntity.movieTitle}</div>
 
 
 			<div class="bottom_box">
 				<div class="like_box">
-					<i class="far fa-heart"></i> 5
+					<i class="far fa-heart"></i> ${movieEntity.movieLike}
 				</div>
 				<div>
-					<i class="fas fa-ticket-alt"></i> 예매율 : 1위
+					<i class="fas fa-ticket-alt"></i> 예매율 : ${movieEntity.rank}위
 				</div>
 				<div>
 					<i class="fas fa-user-friends"></i> 누적관람객 : 15000명
@@ -28,7 +28,7 @@
 		</div>
 		<div class="m_photo">
 			<img class="card-img-top"
-				src="https://img.megabox.co.kr/SharedImg/2021/09/29/fl6qV6UG8faiMppMO4LZp9VZlohic35T_420.jpg"
+				src="${movieEntity.img}"
 				alt="영화 이미지" style="width: 100%">
 			<button type="button" class="btn_res">예매하기</button>
 		</div>
