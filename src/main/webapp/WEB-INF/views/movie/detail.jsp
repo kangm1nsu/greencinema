@@ -68,15 +68,24 @@
 				<!-- 댓글목록시작 -->
 				<div class="comment">
 					<div class="commented-section mt-2">
-						<div class="d-flex flex-row align-items-center commented-user">
-							<h5 class="mr-2">작성자 : 그린이</h5>
-						</div>
+						
+							<c:forEach var="comment" items="${movieEntity.comments }">
+									<li id="reply-${comment.id }"
+										class="list-group-item d-flex justify-content-between">
+										<div>${comment.content }</div>
+										</li>
+										
 						<div class="comment-text-sm">
-							<span>재밌어요</span>
-						</div>
-					</div>
+										
+											<div>작성자: ${comment.user.username }</div>
+													
 					<div class="delete_btn">
 						<button type="button" class="btn btn-block create-account">삭제하기</button>
+					</div>
+						</div>
+						
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 				<!-- 댓글목록 끝 -->
