@@ -159,7 +159,7 @@
 		<!-- 영화 카드 끝 -->
 	</div>
 </div>
-
+ <!-- 좋아요 시작  -->
 <script>
             async function like1() {
                 // jquery 문법 ajax 사용해도 된다.
@@ -252,4 +252,5 @@
                 }
             }
         </script>
+        <!-- 좋아요 끝  -->
 <%@ include file="../layout/footer.jsp"%>
