@@ -6,7 +6,7 @@
 
 
 <div class="login-dark">
-	<form action="login" method="post">
+	<form action="/login" method="post">
 		<h2 class="sr-only">로그인</h2>
 		<div class="illustration">
 			<i class="icon ion-ios-locked-outline"></i>

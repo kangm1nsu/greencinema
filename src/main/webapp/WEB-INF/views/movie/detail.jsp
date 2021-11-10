@@ -3,6 +3,20 @@
 <%@ include file="../layout/header.jsp"%>
 <link rel="stylesheet" href="/css/movie/detail.css" />
 
+<style>
+.m_set_red {
+	color: red;
+}
+
+.m_set_white {
+	color: white;
+}
+
+.m_set_pointer {
+	cursor: pointer;
+}
+</style>
+
 
 <div class="wrap">
 	<div class="detail">
@@ -39,14 +53,18 @@
 		<div class="container mt-5 mb-5">
 
 			<div class="coment-bottom bg-white p-2 px-4">
+	<!--  댓글 쓰기     -->		
+						<form action="/movie/detail/${movieEntity.id }" method="POST">
 				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
 					<img
 						class="img-fluid img-responsive rounded-circle mr-2 m_margin_right"
-						src="/img/logo_black.png" width="38"><input type="text"
+						src="/img/logo_black.png" width="38">
+						<input type="text"  name="content"
 						class="form-control mr-3" placeholder="관람평을 작성해주세요">
-					<button class="btn btn-primary" type="button">comment</button>
+					<button type="submit" class="btn btn-primary" type="button">comment</button>
 				</div>
-				
+						</form>
+	<!--  댓글 쓰기 종료   -->			
 				<!-- 댓글목록시작 -->
 				<div class="comment">
 					<div class="commented-section mt-2">
