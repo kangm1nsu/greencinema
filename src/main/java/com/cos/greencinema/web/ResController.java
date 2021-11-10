@@ -3,7 +3,6 @@ package com.cos.greencinema.web;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.greencinema.domain.Schedule.Schedule;
 import com.cos.greencinema.domain.Schedule.ScheduleRepository;
-import com.cos.greencinema.domain.cinema.Cinema;
 import com.cos.greencinema.domain.cinema.CinemaRepository;
 import com.cos.greencinema.domain.location.Location;
 import com.cos.greencinema.domain.location.LocationRepository;
@@ -26,13 +24,16 @@ import com.cos.greencinema.domain.movie.Movie;
 import com.cos.greencinema.domain.movie.MovieRepository;
 import com.cos.greencinema.domain.region.Region;
 import com.cos.greencinema.domain.region.RegionRepository;
+import com.cos.greencinema.domain.reservation.Reservation;
 import com.cos.greencinema.domain.reservation.ReservationRepository;
 import com.cos.greencinema.domain.user.User;
 import com.cos.greencinema.handler.ex.MyAsyncNotFoundException;
+import com.cos.greencinema.util.Script;
 import com.cos.greencinema.web.dto.CMRespDto;
 import com.cos.greencinema.web.dto.MovieReqDto;
 import com.cos.greencinema.web.dto.RegionReqDto;
 import com.cos.greencinema.web.dto.ReserveReqDto;
+import com.cos.greencinema.web.dto.SelectedSeatReqDto;
 import com.cos.greencinema.web.dto.TimeTableReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -41,7 +42,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class ResController {
 	private final HttpSession session;
-	private final ReservationRepository resRepository;
 	private final ScheduleRepository scheduleRepository;
 	private final CinemaRepository cinemaRepository;
 	private final LocationRepository locationRepository;
@@ -49,8 +49,10 @@ public class ResController {
 	private final MovieRepository movieRepository;
 	private final ReservationRepository reservationRepository;
 
+	List<Reservation> reservationEntity = null; 
 	@GetMapping("/res")
-	public String Reserve() {
+	public String Reserve(Model model) {
+		model.addAttribute("reservationEntity", reservationEntity);
 		return "res/reserve";
 	}
 
@@ -64,53 +66,79 @@ public class ResController {
 		return "pay/pay";
 	}
 
-	@PostMapping("/saveResForm")
-	public String saveResFrom1() {
-		return "pay/saveResForm";
-	}
-
-	@GetMapping("/saveResForm")
-	public String saveResFrom() {
-		return "pay/saveResForm";
-	}
-
 	@GetMapping("/mlist")
 	public String getMovieList(Model model) {
 		List<Movie> movieEntity = movieRepository.findAll();
+		System.out.println(movieEntity);
 		// System.out.println(movieEntity);
 		model.addAttribute("movieEntity", movieEntity);
 		return "res/movieList";
 	}
 
 	@PostMapping("/res")
-	public String postReserve() {
+	public @ResponseBody String postReserve(ReserveReqDto dto, Model model) {
+		// 로그인 필요
+		User principal = (User) session.getAttribute("principal");
+		if ( principal == null ) {
+			return Script.href("/loginForm", "로그인이 필요한 페이지 입니다");
+		}
 		
-		return "res/reserve";
+		int movieId = movieRepository.mFind(dto.getMovieName());
+		int locationId = locationRepository.mFindLocationId(dto.getLocationName());
+		int cinemaId = cinemaRepository.mFindCinemaIdByName(locationId, dto.getCinemaName());
+		//Schedule schedule = scheduleRepository.mFindAll(movieId, cinemaId, dto.getStartingYear(), dto.getStartingMonth(), dto.getStartingDate(), dto.getStartingTime());
+		Integer scheduleId = scheduleRepository.mFindScheduleId(movieId, cinemaId, dto.getStartingYear(), dto.getStartingMonth(), dto.getStartingDate(), dto.getStartingTime());
+		if ( scheduleId == null ) {
+			return Script.back("존재하지 않는 상영시간입니다.");
+		}
+			reservationEntity = reservationRepository.mFindAllScheduleById(scheduleId);
+			model.addAttribute("reservationEntity", reservationEntity);
+		return Script.href("/res");
 	}
 
 	@PostMapping("/reservation")
-	public @ResponseBody String Reservation(@RequestBody ReserveReqDto dto, User principal, Schedule schedule) {
+	public @ResponseBody String Reservation(@RequestBody SelectedSeatReqDto dto, User principal, Schedule schedule) {
 		principal = (User) session.getAttribute("principal");
-		System.out.println(principal);
+		// 로그인 필요
+		if ( principal == null ) {
+			return Script.href("/loginForm", "로그인이 필요한 페이지 입니다.");
+		}
+		
+		// 영화 제목 필요
+		if ( dto.getMovieName() == null) {
+			return Script.href("/mlist", "선택한 영화가 존재하지 않습니다.");
+		}
 		int movieId = movieRepository.mFind(dto.getMovieName());
+		
+		// 선택한 위치 필요
+		if ( dto.getLocationName() == null) {
+			return Script.href("/mlist", "선택한 지역이 존재하지 않습니다.");
+		}		
 		int locationId = locationRepository.mFindLocationId(dto.getLocationName());
-		System.out.println(dto.getCinemaName());
+		
+		// 선택한 상영관 필요
+		if ( dto.getCinemaName() == null) {
+			return Script.href("/mlist", "선택한 상영관이 존재하지 않습니다.");
+		}
 		int cinemaId = cinemaRepository.mFindCinemaIdByName(locationId, dto.getCinemaName());
-		// movie = (Movie) movieRepository.mFindById(movieId);
-		schedule = scheduleRepository.mFindAll(movieId, cinemaId, dto.getStartingYear(), dto.getStartingMonth(), dto.getStartingDate(), dto.getStartingYear());
-		System.out.println(schedule);
+		
+		schedule = scheduleRepository.mFindAll(movieId, cinemaId, dto.getStartingYear(), dto.getStartingMonth(), dto.getStartingDate(), dto.getStartingTime());
+		if (schedule == null) {
+			return Script.href("/mlist", "스케쥴이 존재하지 않습니다.");
+		}
 		String[] seats = dto.getSeat().split(",");
 		for (int i = 0; i < seats.length; i++) {
 			String seat = seats[i].trim();
 			dto.setSeat(seat);
 			reservationRepository.save(dto.toEntity(principal, schedule));
 		}
+		reservationEntity = null;
 		return "res/movieList";
 	}
 
 	// 비동기요청 : 영화제목 클릭
 	@PostMapping("/mlist/region/{id}")
-	public @ResponseBody CMRespDto<String> region(@PathVariable int id, @RequestBody MovieReqDto dto) {
+	public @ResponseBody CMRespDto<String> region(@PathVariable int id, @RequestBody MovieReqDto dto) {		
 		Movie movieEntity = movieRepository.findById(id)
 				.orElseThrow(() -> new MyAsyncNotFoundException("해당 영화를 찾을 수가 없습니다."));
 		System.out.println(dto.getMovieTitle());
