@@ -55,8 +55,8 @@ public class UserController {
 	
 	// ==== 회원수정 ====
 		@PutMapping("/user/{id}")
-		public @ResponseBody CMRespDto<String> update(@PathVariable int id,
-				@Valid @RequestBody UserUpdateDto dto, BindingResult bindingResult) {
+		public @ResponseBody CMRespDto<?> update(@PathVariable int id,
+				@Valid @RequestBody UserUpdateDto dto, BindingResult bindingResult				) {
 			
 			// 유효성
 			if(bindingResult.hasErrors()) {
@@ -66,6 +66,24 @@ public class UserController {
 				}
 				throw new MyAsyncNotFoundException(errorMap.toString());
 			}
+			
+			// 인증
+			User principal = (User) session.getAttribute("principal");
+			if (principal == null) {
+				throw new MyAsyncNotFoundException("로그인을 하세요.");
+			}
+			
+			// 권한
+			if (principal.getId() != id) {
+				throw new MyAsyncNotFoundException("수정할 권한이 없습니다.");
+			}
+			
+			
+			principal.setEmail(dto.getEmail());
+			principal.setTel(dto.getTel());
+			session.setAttribute("principal", principal);
+			
+			userRepository.save(principal);
 			
 			return new CMRespDto<>(1, "성공", null);
 		}
@@ -91,6 +109,11 @@ public class UserController {
 			return Script.back(errorMap.toString());
 			
 		}
+		// 인증
+					User principal = (User) session.getAttribute("principal");
+					if (principal == null) {
+						throw new MyAsyncNotFoundException("잘못된 접근 입니다.");
+					}
 		
 		System.out.println(dto.getUsername());
 		String encpassword = SHA.encrypt(dto.getPassword(), MyAlgorithm.SHA256);
