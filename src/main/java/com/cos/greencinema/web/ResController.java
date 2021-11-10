@@ -69,6 +69,7 @@ public class ResController {
 	@GetMapping("/mlist")
 	public String getMovieList(Model model) {
 		List<Movie> movieEntity = movieRepository.findAll();
+		System.out.println(movieEntity);
 		// System.out.println(movieEntity);
 		model.addAttribute("movieEntity", movieEntity);
 		return "res/movieList";
