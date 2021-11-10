@@ -11,10 +11,7 @@
             <input type="text" class="form-control item" id="username"
                placeholder="아이디" value="${sessionScope.principal.username }" readonly>
          </div>
-         <div class="form-group">
-            <input type="password" class="form-control item" id="password"
-               placeholder="비밀번호" value="${sessionScope.principal.password }" readonly>
-         </div>
+ 
          
          <div class="form-group">
             <input type="text" class="form-control item" id="email"

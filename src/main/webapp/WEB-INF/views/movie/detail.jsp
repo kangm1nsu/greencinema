@@ -41,9 +41,8 @@
 				처단할 것인가</div>
 		</div>
 		<div class="m_photo">
-			<img class="card-img-top"
-				src="${movieEntity.img}"
-				alt="영화 이미지" style="width: 100%">
+			<img class="card-img-top" src="${movieEntity.img}" alt="영화 이미지"
+				style="width: 100%">
 			<button type="button" class="btn_res">예매하기</button>
 		</div>
 
@@ -53,23 +52,41 @@
 		<div class="container mt-5 mb-5">
 
 			<div class="coment-bottom bg-white p-2 px-4">
-	<!--  댓글 쓰기     -->		
-						<form action="/movie/detail/${movieEntity.id }" method="POST">
-				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
-					<img
-						class="img-fluid img-responsive rounded-circle mr-2 m_margin_right"
-						src="/img/logo_black.png" width="38">
-						<input type="text"  name="content"
-						class="form-control mr-3" placeholder="관람평을 작성해주세요">
-					<button type="submit" class="btn btn-primary" type="button">comment</button>
-				</div>
-						</form>
-	<!--  댓글 쓰기 종료   -->			
+				<!--  댓글 쓰기     -->
+				<form action="/movie/detail/${movieEntity.id }" method="POST">
+					<div class="d-flex flex-row add-comment-section mt-4 mb-4">
+						<img
+							class="img-fluid img-responsive rounded-circle mr-2 m_margin_right"
+							src="/img/logo_black.png" width="38"> <input type="text"
+							name="content" class="form-control mr-3"
+							placeholder="관람평을 작성해주세요">
+						<button type="submit" class="btn btn-primary" type="button">comment</button>
+					</div>
+				</form>
+				<!--  댓글 쓰기 종료   -->
 				<!-- 댓글목록시작 -->
-				<div class="comment">
-					<div class="commented-section mt-2">
-						
-							<c:forEach var="comment" items="${movieEntity.comments }">
+
+						<c:forEach var="comment" items="${movieEntity.comments }">
+					<div class="comment">
+							
+								<div class="commented-section mt-2"  id="reply-${comment.id }">
+									<div class="d-flex flex-row align-items-center commented-user">
+										<h5 class="mr-2">작성자 : ${comment.user.username }</h5>
+									</div>
+									<div class="comment-text-sm">
+										<span>${comment.content }</span>
+									</div>
+								</div>
+							
+							
+
+							<div class="delete_btn">
+								<button type="button" class="btn btn-block create-account">삭제하기</button>
+							</div>
+
+					</div>
+					</c:forEach>
+					<%-- <c:forEach var="comment" items="${movieEntity.comments }">
 									<li id="reply-${comment.id }"
 										class="list-group-item d-flex justify-content-between">
 										<div>${comment.content }</div>
@@ -84,17 +101,14 @@
 					</div>
 						</div>
 						
-							</c:forEach>
-						</div>
-					</div>
+							</c:forEach> --%>
 				</div>
-				<!-- 댓글목록 끝 -->
-
 			</div>
 		</div>
 	</div>
+		<!-- 댓글목록 끝 -->
 
-</div>
+
 
 
 
