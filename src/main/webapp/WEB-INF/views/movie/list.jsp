@@ -71,8 +71,9 @@
 
 	</div>
 </div>
-
+ <!-- 좋아요 시작  -->
 <script>
+<<<<<<< HEAD
 	async
 	function like1() {
 		// jquery 문법 ajax 사용해도 된다.
@@ -179,4 +180,98 @@
 		}
 	}
 </script>
+=======
+            async function like1() {
+                // jquery 문법 ajax 사용해도 된다.
+                // fetch 문법
+
+                let response = await fetch("http://localhost:8080/test/movie/list", {
+                    method: "post"
+                });
+
+                let parseResponse = await response.json(); // json(), text() 받음
+
+                // alert(parseResponse)
+                console.log(parseResponse);
+
+                if (parseResponse.code == 1) {
+                    $("#heart1").addClass("m_set_red");
+                    $("#heart1").toggleClass("fas");
+                }
+            }
+            async function like2() {
+                // jquery 문법 ajax 사용해도 된다.
+                // fetch 문법
+
+                let response = await fetch("http://localhost:8080/test/movie/list", {
+                    method: "post"
+                });
+
+                let parseResponse = await response.json(); // json(), text() 받음
+
+                // alert(parseResponse)
+                console.log(parseResponse);
+
+                if (parseResponse.code == 1) {
+                    $("#heart2").addClass("m_set_red");
+                    $("#heart2").toggleClass("fas");
+                }
+            }
+            async function like3() {
+                // jquery 문법 ajax 사용해도 된다.
+                // fetch 문법
+
+                let response = await fetch("http://localhost:8080/test/movie/list", {
+                    method: "post"
+                });
+
+                let parseResponse = await response.json(); // json(), text() 받음
+
+                // alert(parseResponse)
+                console.log(parseResponse);
+
+                if (parseResponse.code == 1) {
+                    $("#heart3").addClass("m_set_red");
+                    $("#heart3").toggleClass("fas");
+                }
+            }
+            async function like4() {
+                // jquery 문법 ajax 사용해도 된다.
+                // fetch 문법
+
+                let response = await fetch("http://localhost:8080/test/movie/list", {
+                    method: "post"
+                });
+
+                let parseResponse = await response.json(); // json(), text() 받음
+
+                // alert(parseResponse)
+                console.log(parseResponse);
+
+                if (parseResponse.code == 1) {
+                    $("#heart4").addClass("m_set_red");
+                    $("#heart4").toggleClass("fas");
+                }
+            }
+            async function like5() {
+                // jquery 문법 ajax 사용해도 된다.
+                // fetch 문법
+
+                let response = await fetch("http://localhost:8080/test/movie/list", {
+                    method: "post"
+                });
+
+                let parseResponse = await response.json(); // json(), text() 받음
+
+                // alert(parseResponse)
+                console.log(parseResponse);
+
+                if (parseResponse.code == 1) {
+                    $("#heart5").addClass("m_set_red");
+                    $("#heart5").toggleClass("fas");
+                }
+            }
+        </script>
+        <!-- 좋아요 끝  -->
+>>>>>>> master
 <%@ include file="../layout/footer.jsp"%>
