@@ -102,6 +102,13 @@
 			<div class="reserveOk">
 			<c:if test="${not empty timeEntity}">
 				<form action="/res" method="post">
+					<input type="hidden"  id="movieName" name="movieName" value="">
+					<input type="hidden"  id="cinemaName" name="cinemaName" value="">
+					<input type="hidden"  id="locationName" name="locationName" value="">
+					<input type="hidden"  id="startingYear" name="startingYear" value="">
+					<input type="hidden"  id="startingMonth" name="startingMonth" value="">
+					<input type="hidden"  id="startingDate" name="startingDate" value="">
+					<input type="hidden"  id="startingTime" name="startingTime" value="">
 					<button class="reserveBtn" type="submit">
 						<span class="right"> → </span> <br> <span class="letter">
 							좌석선택 </span>
@@ -324,6 +331,8 @@
 			let startingTime = information3[1].trim();
 			sessionStorage.setItem("startingTime", startingTime);
 			sessionStorage.setItem("cinemaName", cinemaName);
+			document.querySelector('#startingTime').value = startingTime;
+			document.querySelector('#cinemaName').value = cinemaName;
 		}
 	}
 
@@ -402,14 +411,20 @@
 	    				dateBtn[i].classList.remove("selectedBtn");
 	    			}
 	    			event.target.classList.add("selectedBtn");
-	    			let rYear = document.querySelector('.reserveYear').innerHTML + "년";
-	    			let rMonth = document.querySelector('.reserveMonth').innerHTML + "월";
+	    			let rYear = document.querySelector('.reserveYear').innerHTML;
+	    			let rMonth = document.querySelector('.reserveMonth').innerHTML;
 	    			let rDay = document.querySelector('.movieDateWrapper.selectedBtn').innerHTML;
-	    			let rDate = rDay.slice(-2) +"일";
+	    			let rDate = rDay.slice(-2);
 	    			sessionStorage.setItem("year", rYear);
 	    			sessionStorage.setItem("month", rMonth);
 	    			sessionStorage.setItem("date", rDate);
-	    			
+	    			document.querySelector('#startingYear').value = rYear;
+	    			document.querySelector('#startingMonth').value = rMonth;
+	    			document.querySelector('#startingDate').value = rDate;
+	    			document.querySelector('#movieName').value = sessionStorage.getItem('movie');
+	    			document.querySelector('#locationName').value = sessionStorage.getItem('place');
+	    			document.querySelector('#startingTime').value =  sessionStorage.getItem('startingTime');
+	    			document.querySelector('#cinemaName').value =  sessionStorage.getItem('cinemaName');
 	    		}
 	    	}
 	    	

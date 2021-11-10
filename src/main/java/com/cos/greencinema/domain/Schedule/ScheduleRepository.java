@@ -16,8 +16,11 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer>{
 	@Query(value = "select startingTime from schedule where movieId = :movieId and cinemaId = :cinemaId", nativeQuery = true)
 	List<String> mTimeFindAll(int movieId, int cinemaId);
 	
-	@Query(value = "select * from schedule where movieId = :movieId and cinemaId = :cinemaId and startingYear = :startingYear and startingMonth = :startingMonth, startingDate =:startingDate and startingTime = :startingTime", nativeQuery = true)
+	@Query(value = "select * from schedule where movieId = :movieId and cinemaId = :cinemaId and startingYear = :startingYear and startingMonth = :startingMonth and  startingDate =:startingDate and startingTime = :startingTime", nativeQuery = true)
 	Schedule mFindAll(int movieId, int cinemaId, String startingYear, String startingMonth, String startingDate, String startingTime);
+	
+	@Query(value = "select id from schedule where movieId = :movieId and cinemaId = :cinemaId and startingYear = :startingYear and startingMonth = :startingMonth and  startingDate =:startingDate and startingTime = :startingTime", nativeQuery = true)
+	Integer mFindScheduleId(int movieId, int cinemaId, String startingYear, String startingMonth, String startingDate, String startingTime);
 	
 	@Query(value = "select distinct cinemaId from schedule where movieId = :movieId and startingTime = :startingTime", nativeQuery = true)
 	int mFindCinemaId(int movieId, String startingTime);

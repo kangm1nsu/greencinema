@@ -28,5 +28,4 @@ public class Script {
 		sb.append("</script>");
 		return sb.toString();
 	}
-
 }
