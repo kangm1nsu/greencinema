@@ -89,16 +89,16 @@
 					<div class="screen"></div>
 
 					<div class="row">
-						<div class="seat">A1</div>
-						<div class="seat">A2</div>
-						<div class="seat">A3</div>
-						<div class="seat">A4</div>
-						<div class="seat">A5</div>
-						<div class="seat">A6</div>
-						<div class="seat">A7</div>
-						<div class="seat">A8</div>
-						<div class="seat">A9</div>
-						<div class="seat">A10</div>
+						<div class="seat" id="A1">A1</div>
+						<div class="seat" id="A2">A2</div>
+						<div class="seat" id="A3">A3</div>
+						<div class="seat" id="A4">A4</div>
+						<div class="seat" id="A5">A5</div>
+						<div class="seat" id="A6">A6</div>
+						<div class="seat" id="A7">A7</div>
+						<div class="seat" id="A8">A8</div>
+						<div class="seat" id="A9">A9</div>
+						<div class="seat" id="A10">A10</div>
 					</div>
 
 					<div class="row">
@@ -222,9 +222,9 @@ let movie = sessionStorage.getItem('movie');
 let loc = sessionStorage.getItem('location');
 let place = sessionStorage.getItem('place');
 let cinema = loc + " " +place + " GC"
-let year = sessionStorage.getItem('year');
-let month = sessionStorage.getItem('month');
-let date = sessionStorage.getItem('date');
+let year = sessionStorage.getItem('year') + "년";
+let month = sessionStorage.getItem('month') + "월";
+let date = sessionStorage.getItem('date') + "일";
 let schedule = year + " " + month + " " + date;
 let startingTime = sessionStorage.getItem('startingTime')
 $('#movie').append(movie)
@@ -239,6 +239,26 @@ let total = $('#total')[0];
 let movieSelect = $('#movie')[0];
 
 populateUI();
+
+var list = new Array();
+
+var reservationEntity = '<c:out value = "${reservationEntity}"/>';
+<c:forEach items="${reservationEntity}" var="reservation">
+
+list.push("${reservation.seat}");
+
+</c:forEach>
+
+let seatAll = document.querySelectorAll(".seat");
+for (var i = 0; i < list.length; i++) {
+	let reservedSeat = list[i];
+	for (var j =0; j < seatAll.length; j++) {
+		let seatOne = seatAll[j].innerHTML;
+		if ( reservedSeat == seatOne) {
+			seatAll[j].classList.add("sold")
+		}
+	}
+}
 
 // let ticketPrice = +movieSelect.value;
 

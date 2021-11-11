@@ -66,7 +66,7 @@
 			</div>
 			<div>ㅣ</div>
 			<div>
-				<a href="/test/movie/list">영화</a>
+				<a href="/movie/list">영화</a>
 			</div>
 			<div>ㅣ</div>
 			<div>

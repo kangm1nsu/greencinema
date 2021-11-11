@@ -14,6 +14,7 @@ import javax.persistence.PrePersist;
 
 import com.cos.greencinema.domain.cinema.Cinema;
 import com.cos.greencinema.domain.movie.Movie;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Schedule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	
 	@JoinColumn(name="movieId")
 	@ManyToOne(fetch = FetchType.EAGER)

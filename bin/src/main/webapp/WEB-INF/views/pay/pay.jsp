@@ -68,16 +68,14 @@
                 }).done(function(data) {
                     //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                     if ( everythings_fine ) {
-                        console.log(data);
-        				alert('성공');
-                        location.href="http://localhost:8080/saveResForm";
+
                     } else {
                         //[3] 아직 제대로 결제가 되지 않았습니다.
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
                     }
                 });
-				alert('성공');
-                location.href="http://localhost:8080/user/myRes";
+				// alert('성공');
+                location.href="http://localhost:8080/test/user/myRes";
                 //성공시 이동할 페이지
                 sessionStorage.clear();
              } else {
